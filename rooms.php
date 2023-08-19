@@ -1,3 +1,16 @@
+<?php 
+  session_start(); 
+  if(!$_SESSION['room_types']){
+    include 'db_connection.php';
+    
+    $query = "SELECT * FROM `room_type_tbl`";
+    $room_types_sql = mysqli_query($connection, $query);
+
+    $_SESSION['room_types'] = array();
+    while ($room_type = mysqli_fetch_assoc($room_types_sql))
+      array_push($_SESSION['room_types'], $room_type);
+  }
+?>
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -65,7 +78,7 @@
       <nav class="mainmenu mobile-menu">
         <ul>
           <li class="active"><a href="./index.php">Home</a></li>
-          <li><a href="./rooms.html">Rooms</a></li>
+          <li><a href="./rooms.php">Rooms</a></li>
           <li><a href="./about-us.html">About Us</a></li>
           <li>
             <a href="./pages.html">Pages</a>
@@ -111,7 +124,7 @@
                 <nav class="mainmenu">
                   <ul>
                     <li><a href="./index.php">Home</a></li>
-                    <li class="active"><a href="./rooms.html">Rooms</a></li>
+                    <li class="active"><a href="./rooms.php">Rooms</a></li>
                     <li><a href="./about-us.html">About Us</a></li>
                     <li><a href="./contact.html">Contact</a></li>
                   </ul>
@@ -149,30 +162,34 @@
     <section class="rooms-section spad">
       <div class="container">
         <div class="row">
+          <?php
+            for($count = 4; $count < 10; $count++ ){
+              $room_type = $_SESSION['room_types'][$count];
+          ?>
           <div class="col-lg-4 col-md-6">
             <div class="room-color">
               <div class="room-item">
-                <img src="img/room/room-1.jpg" alt="" />
+                <img src="img/room/room-<?php echo $count - 3 ?>.jpg" alt="" />
                 <div class="ri-text">
-                  <h4>Premium King Room</h4>
-                  <h3>159$<span>/Pernight</span></h3>
+                  <h4><?php echo $room_type['room_name'] ?></h4>
+                  <h3>₱<?php echo $room_type['cost'] ?><span>/Pernight</span></h3>
                   <table>
                     <tbody>
                       <tr>
                         <td class="r-o">Size:</td>
-                        <td>30 ft</td>
+                        <td><?php echo $room_type['size'] ?> ft</td>
                       </tr>
                       <tr>
                         <td class="r-o">Capacity:</td>
-                        <td>Max persion 3</td>
+                        <td>Max person <?php echo $room_type['capacity'] ?></td>
                       </tr>
                       <tr>
                         <td class="r-o">Bed:</td>
-                        <td>King Beds</td>
+                        <td><?php echo $room_type['bed'] ?></td>
                       </tr>
                       <tr>
                         <td class="r-o">Services:</td>
-                        <td>Wifi, Television, Bathroom,...</td>
+                        <td><?php echo $room_type['services'] ?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -181,156 +198,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-              <img src="img/room/room-2.jpg" alt="" />
-              <div class="ri-text">
-                <h4>Deluxe Room</h4>
-                <h3>159$<span>/Pernight</span></h3>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="r-o">Size:</td>
-                      <td>30 ft</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Capacity:</td>
-                      <td>Max persion 5</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Bed:</td>
-                      <td>King Beds</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Services:</td>
-                      <td>Wifi, Television, Bathroom,...</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#" class="primary-btn">BOOK NOW</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-              <img src="img/room/room-3.jpg" alt="" />
-              <div class="ri-text">
-                <h4>Double Room</h4>
-                <h3>159$<span>/Pernight</span></h3>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="r-o">Size:</td>
-                      <td>30 ft</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Capacity:</td>
-                      <td>Max persion 2</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Bed:</td>
-                      <td>King Beds</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Services:</td>
-                      <td>Wifi, Television, Bathroom,...</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#" class="primary-btn">BOOK NOW</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-              <img src="img/room/room-4.jpg" alt="" />
-              <div class="ri-text">
-                <h4>Luxury Room</h4>
-                <h3>159$<span>/Pernight</span></h3>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="r-o">Size:</td>
-                      <td>30 ft</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Capacity:</td>
-                      <td>Max persion 1</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Bed:</td>
-                      <td>King Beds</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Services:</td>
-                      <td>Wifi, Television, Bathroom,...</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#" class="primary-btn">BOOK NOW</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-              <img src="img/room/room-5.jpg" alt="" />
-              <div class="ri-text">
-                <h4>Room With View</h4>
-                <h3>159$<span>/Pernight</span></h3>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="r-o">Size:</td>
-                      <td>30 ft</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Capacity:</td>
-                      <td>Max persion 1</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Bed:</td>
-                      <td>King Beds</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Services:</td>
-                      <td>Wifi, Television, Bathroom,...</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#" class="primary-btn">BOOK NOW</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-              <img src="img/room/room-6.jpg" alt="" />
-              <div class="ri-text">
-                <h4>Small View</h4>
-                <h3>159$<span>/Pernight</span></h3>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td class="r-o">Size:</td>
-                      <td>30 ft</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Capacity:</td>
-                      <td>Max persion 2</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Bed:</td>
-                      <td>King Beds</td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Services:</td>
-                      <td>Wifi, Television, Bathroom,...</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#" class="primary-btn">BOOK NOW</a>
-              </div>
-            </div>
-          </div>
+          <?php } ?>
           <div class="col-lg-12">
             <div class="room-pagination">
               <a href="#">1</a>

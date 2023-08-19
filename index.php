@@ -1,7 +1,13 @@
 <?php
+  session_start();
   include 'db_connection.php';
 
+  $query = "SELECT * FROM `room_type_tbl`";
+  $room_types_sql = mysqli_query($connection, $query);
 
+  $_SESSION['room_types'] = array();
+  while ($room_type = mysqli_fetch_assoc($room_types_sql))
+    array_push($_SESSION['room_types'], $room_type);
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -70,7 +76,7 @@
       <nav class="mainmenu mobile-menu">
         <ul>
           <li class="active"><a href="./index.php">Home</a></li>
-          <li><a href="./rooms.html">Rooms</a></li>
+          <li><a href="./rooms.php">Rooms</a></li>
           <li><a href="./about-us.html">About Us</a></li>
           <li><a href="./contact.html">Contact</a></li>
         </ul>
@@ -106,7 +112,7 @@
                 <nav class="mainmenu">
                   <ul>
                     <li class="active"><a href="./index.php">Home</a></li>
-                    <li><a href="./rooms.html">Rooms</a></li>
+                    <li><a href="./rooms.php">Rooms</a></li>
                     <li><a href="./about-us.html">About Us</a></li>
                     <li><a href="./contact.html">Contact</a></li>
                   </ul>
@@ -214,31 +220,36 @@
       <div class="container-fluid">
         <div class="hp-room-items">
           <div class="row">
+            <?php
+              // Temporary array for room images -> TODO: Remove if replacement is found
+              $png_array = array("img/room/venue-hall.png","img/room/bahay-kubo.png", "img/room/bahay-medium.png", "img/room/bahay-medium.png");
+              for($count = 0; $count < 4; $count++){
+            ?>
             <div class="col-lg-3 col-md-6">
               <div
                 class="hp-room-item set-bg"
-                data-setbg="img/room/venue-hall.png"
+                data-setbg=<?php echo $png_array[$count] ?>
               >
                 <div class="hr-text">
-                  <h3>Venue Hall</h3>
-                  <h2>₱999<span>/Pernight</span></h2>
+                  <h3><?php echo $_SESSION['room_types'][$count]['room_name'] ?></h3>
+                  <h2>₱<?php echo $_SESSION['room_types'][$count]['cost'] ?><span>/Pernight</span></h2>
                   <table>
                     <tbody>
                       <tr>
                         <td class="r-o">Size:</td>
-                        <td>30 ft</td>
+                        <td><?php echo $_SESSION['room_types'][$count]['size'] ?> ft</td>
                       </tr>
                       <tr>
                         <td class="r-o">Capacity:</td>
-                        <td>Max persion 5</td>
+                        <td>Max person <?php echo $_SESSION['room_types'][$count]['capacity'] ?></td>
                       </tr>
                       <tr>
                         <td class="r-o">Bed:</td>
-                        <td>King Beds</td>
+                        <td><?php echo $_SESSION['room_types'][$count]['bed'] ?></td>
                       </tr>
                       <tr>
                         <td class="r-o">Services:</td>
-                        <td>Wifi, Television, Bathroom,...</td>
+                        <td><?php echo $_SESSION['room_types'][$count]['services'] ?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -246,102 +257,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-              <div
-                class="hp-room-item set-bg"
-                data-setbg="img/room/bahay-kubo.png"
-              >
-                <div class="hr-text">
-                  <h3>Bahay Kubo</h3>
-                  <h2>₱999<span>/Pernight</span></h2>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td class="r-o">Size:</td>
-                        <td>30 ft</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Capacity:</td>
-                        <td>Max persion 5</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Bed:</td>
-                        <td>King Beds</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Services:</td>
-                        <td>Wifi, Television, Bathroom,...</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <a href="#" class="primary-btn">BOOK NOW</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <div
-                class="hp-room-item set-bg"
-                data-setbg="img/room/bahay-medium.png"
-              >
-                <div class="hr-text">
-                  <h3>Medium Room</h3>
-                  <h2>₱999<span>/Pernight</span></h2>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td class="r-o">Size:</td>
-                        <td>30 ft</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Capacity:</td>
-                        <td>Max persion 5</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Bed:</td>
-                        <td>King Beds</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Services:</td>
-                        <td>Wifi, Television, Bathroom,...</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <a href="#" class="primary-btn">BOOK NOW</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <div
-                class="hp-room-item set-bg"
-                data-setbg="img/room/bahay-medium.png"
-              >
-                <div class="hr-text">
-                  <h3>Small Room</h3>
-                  <h2>₱999<span>/Pernight</span></h2>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td class="r-o">Size:</td>
-                        <td>30 ft</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Capacity:</td>
-                        <td>Max persion 5</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Bed:</td>
-                        <td>King Beds</td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Services:</td>
-                        <td>Wifi, Television, Bathroom,...</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <a href="#" class="primary-btn">BOOK NOW</a>
-                </div>
-              </div>
-            </div>
+            <?php } ?>
           </div>
         </div>
       </div>
