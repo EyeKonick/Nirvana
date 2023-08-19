@@ -1,3 +1,8 @@
+<?php
+  include 'db_connection.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -64,7 +69,7 @@
       </div>
       <nav class="mainmenu mobile-menu">
         <ul>
-          <li class="active"><a href="./index.html">Home</a></li>
+          <li class="active"><a href="./index.php">Home</a></li>
           <li><a href="./rooms.html">Rooms</a></li>
           <li><a href="./about-us.html">About Us</a></li>
           <li><a href="./contact.html">Contact</a></li>
@@ -91,7 +96,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="logo">
-                <a href="./index.html">
+                <a href="./index.php">
                   <img src="img/light-logo.png" alt="" />
                 </a>
               </div>
@@ -100,7 +105,7 @@
               <div class="nav-menu">
                 <nav class="mainmenu">
                   <ul>
-                    <li class="active"><a href="./index.html">Home</a></li>
+                    <li class="active"><a href="./index.php">Home</a></li>
                     <li><a href="./rooms.html">Rooms</a></li>
                     <li><a href="./about-us.html">About Us</a></li>
                     <li><a href="./contact.html">Contact</a></li>
