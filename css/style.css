@@ -651,6 +651,7 @@ header {
 .hero-slider .owl-stage-outer, .hero-slider .owl-stage, .hero-slider .owl-item, .hero-slider .hs-item {
 	height: 100%;
 }
+
 /*---------------------
   About US
 -----------------------*/
@@ -1533,6 +1534,19 @@ header {
 	width: 100%;
 	height: 46px;
 	margin-top: 30px;
+}
+
+.booking-form form .choose-room input {
+	text-align: center;
+	display: block;
+	font-size: 18px;
+	text-transform: uppercase;
+	border-radius: 2px;
+	color: #071952;
+	font-weight: 500;
+	background: white;
+	width: 100%;
+	height: 46px;
 }
 /*---------------------
   Blog Section

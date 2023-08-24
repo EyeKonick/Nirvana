@@ -152,21 +152,12 @@
                   <input type="text" class="date-input" id="date-out" />
                   <i class="icon_calendar"></i>
                 </div>
-                <div class="select-option">
-                  <label for="guest">Guests:</label>
-                  <select id="guest">
-                    <option value="">2 Adults</option>
-                    <option value="">3 Adults</option>
-                  </select>
+                <div class="choose-room">
+                  <button onclick="location.href='rooms.php'">Choose room</button>
+                  <input class="room-field" type="text" placeholder="Rooms" disabled>
                 </div>
-                <div class="select-option">
-                  <label for="room">Room:</label>
-                  <select id="room">
-                    <option value="">1 Room</option>
-                    <option value="">2 Room</option>
-                  </select>
-                </div>
-                <button type="submit">Check Availability</button>
+                <button type="submit">BOOK NOW
+                </button>
               </form>
             </div>
           </div>
