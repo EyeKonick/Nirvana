@@ -193,7 +193,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <a href="#" class="primary-btn">BOOK NOW</a>
+                  <a href="#" class="primary-btn">Check <br>availibility</a>
                 </div>
               </div>
             </div>

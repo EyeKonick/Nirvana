@@ -1,9 +1,10 @@
 
 <style>
 	nav#sidebar {
-    background: url(../assets/img/<?php echo $_SESSION['setting_cover_img'] ?>);
+    background: skyblue;
     background-repeat: no-repeat;
     background-size: cover;
+	}
 </style>
 <nav id="sidebar" class='mx-lt-5' >
 		

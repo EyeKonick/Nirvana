@@ -142,6 +142,10 @@
             <div class="booking-form">
               <h3>Booking Your Hotel</h3>
               <form action="#">
+                <div class="choose-room mb-3">
+                  <button onclick="location.href='rooms.php'">Choose room</button>
+                  <input class="room-field" type="text" placeholder="Room name" disabled>
+                </div>
                 <div class="check-date">
                   <label for="date-in">Check In:</label>
                   <input type="text" class="date-input" id="date-in" />
@@ -152,10 +156,8 @@
                   <input type="text" class="date-input" id="date-out" />
                   <i class="icon_calendar"></i>
                 </div>
-                <div class="choose-room">
-                  <button onclick="location.href='rooms.php'">Choose room</button>
-                  <input class="room-field" type="text" placeholder="Rooms" disabled>
-                </div>
+                <button type="submit">CHECK AVAILABILITY
+                </button>
                 <button type="submit">BOOK NOW
                 </button>
               </form>

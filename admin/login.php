@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin | Hotel Management System</title>
+  <title>Nirvana Admin</title>
  	
 
 <?php include('./header.php'); ?>
@@ -27,7 +27,8 @@ $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
 	body{
 		width: 100%;
 	    height: calc(100%);
-	    /*background: #007bff;*/
+	    background: #007bff;
+		align-items: center;
 	}
 	main#main{
 		width:100%;
@@ -35,38 +36,17 @@ $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
 		background:white;
 	}
 	#login-right{
-		position: absolute;
-		right:0;
-		width:40%;
-		height: calc(100%);
-		background:white;
 		display: flex;
 		align-items: center;
-	}
-	#login-left{
-		position: absolute;
-		left:0;
-		width:60%;
-		height: calc(100%);
-		background:#00000061;
-		display: flex;
-		align-items: center;
+		justify-content: center;
+		height: 100vh;
+		background: skyblue;
 	}
 	#login-right .card{
-		margin: auto
-	}
-	.logo {
-	    margin: auto;
-	    font-size: 8rem;
-	    background: white;
-	    padding: .5em 0.8em;
-	    border-radius: 50% 50%;
-	    color: #000000b3;
-	}
-	#login-left {
-	  background: url(../assets/img/<?php echo $_SESSION['setting_cover_img'] ?>);
-	  background-repeat: no-repeat;
-	  background-size: cover;
+		position: absolute;
+		background: rgba(0, 0, 0, .5);
+		color: white;
+		width: 500px;
 	}
 </style>
 
@@ -74,12 +54,6 @@ $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
 
 
   <main id="main" class=" alert-info">
-  		<div id="login-left">
-  			<!-- == You can logo or image herre == -->
-  			<!-- <div class="logo">
-  				<i class="fa fa-poll-h"></i>
-  			</div> -->
-  		</div>
   		<div id="login-right">
   			<div class="card col-md-8">
   				<div class="card-body">

@@ -9,7 +9,7 @@
 }
 </style>
 
-<nav class="navbar navbar-dark bg-dark fixed-top " style="padding:0;">
+<nav class="navbar navbar-dark bg-primary fixed-top " style="padding:0;">
   <div class="container-fluid mt-2 mb-2">
   	<div class="col-lg-12">
   		<div class="col-md-1 float-left" style="display: flex;">
