@@ -198,7 +198,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <a href="#" class="primary-btn">Check <br>availibility</a>
+                  <a href="#" class="primary-btn"><br>available</a>
                 </div>
               </div>
             </div>
