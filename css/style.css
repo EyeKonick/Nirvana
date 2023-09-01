@@ -135,10 +135,21 @@ ul, ol {
 	font-size: 13px;
 	color: #ffffff;
 	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-weight: 700;
+	position: relative;
+}
+
+.check-btn {
+	display: inline-block;
+	font-size: 13px;
+	color: #ffffff;
+	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: 700;
 	position: relative;
 }
+
 .primary-btn:after {
 	position: absolute;
 	left: 0;
