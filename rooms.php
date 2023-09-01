@@ -150,6 +150,11 @@
               <div class="bt-option">
                 <a href="./home.html">Home</a>
                 <span>Rooms</span>
+                <div class="check-date mt-5">
+                  <label for="date-out">Check Date Available: </label>
+                  <input type="text" class="date-input" id="date-out" />
+                  <i class="icon_calendar"></i>
+                </div>
               </div>
             </div>
           </div>
