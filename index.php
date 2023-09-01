@@ -156,8 +156,6 @@
                   <input type="text" class="date-input" id="date-out" />
                   <i class="icon_calendar"></i>
                 </div>
-                <button type="submit">CHECK AVAILABILITY
-                </button>
                 <button type="submit">BOOK NOW
                 </button>
               </form>

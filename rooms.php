@@ -152,9 +152,10 @@
                 <span>Rooms</span>
                 <div class="check-date mt-5">
                   <label for="date-out">Check Date Available: </label>
-                  <input type="text" class="date-input" id="date-out" />
+                  <input type="text" class="date-input" id="date-out"/>
                   <i class="icon_calendar"></i>
                 </div>
+                <button class="btn btn-primary primary-btn mt-3 p-2" type="submit">Check Availability</button>
               </div>
             </div>
           </div>
@@ -198,7 +199,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <a href="#" class="primary-btn"><br>available</a>
+                  <a href="" class="primary-btn"><br>available</a>
                 </div>
               </div>
             </div>
