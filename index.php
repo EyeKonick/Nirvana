@@ -141,12 +141,14 @@
           <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
             <div class="booking-form">
               <h3>Booking Your Hotel</h3>
-              <form action="#">
+              <form action="rooms.php">
                 <div class="choose-room mb-3">
                   <button onclick="location.href='rooms.php'">Choose room</button>
                   <input class="room-field" type="text" placeholder="Room name" disabled>
                 </div>
-                <div class="check-date">
+              </form>
+              <form action="index.php">
+              <div class="check-date">
                   <label for="date-in">Check In:</label>
                   <input type="text" class="date-input" id="date-in" />
                   <i class="icon_calendar"></i>
@@ -156,8 +158,6 @@
                   <input type="text" class="date-input" id="date-out" />
                   <i class="icon_calendar"></i>
                 </div>
-                <button type="submit">CHECK AVAILABILITY
-                </button>
                 <button type="submit">BOOK NOW
                 </button>
               </form>
