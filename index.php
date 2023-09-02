@@ -1,7 +1,6 @@
 <?php
   session_start();
   include 'db_connection.php';
-  $selected_room_id = 0;
   $selected_room_name = "";
   $query = "SELECT * FROM `room_type_tbl`";
   $room_types_sql = mysqli_query($connection, $query);
@@ -24,7 +23,8 @@
     $formated_in = $date_in->format("Y-m-d");
     $formated_out = $date_out->format("Y-m-d");
     $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
-    mysqli_query($connection, $query);
+    echo $query;
+    // mysqli_query($connection, $query);
   }
 ?>
 <!DOCTYPE html>
