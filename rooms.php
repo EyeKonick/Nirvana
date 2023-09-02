@@ -200,10 +200,11 @@
       <div class="container">
         <div class="row">
           <?php
-            for($count = 4; $count < 10; $count++ ){
+            for($count = 0; $count < 10; $count++ ){
               $room_type = $_SESSION['room_types'][$count];
               $status = "unavailable";
               $avail_room_id = 0;
+              $image_src = $room_type['image_src'];
               // set status of rooms into available if have a matching id in rooms array.
               foreach($rooms as $room){
                 if($room["room_type_id"] == $room_type['id']){
@@ -215,7 +216,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="room-color">
               <div class="room-item">
-                <img src="img/room/room-<?php echo $count - 3 ?>.jpg" alt="" />
+                <img src=<?php echo "img/room/$image_src"?> alt="" />
                 <div class="ri-text">
                   <h4><?php echo $room_type['room_name'] ?></h4>
                   <h3>₱<?php echo $room_type['cost'] ?><span>/Pernight</span></h3>
