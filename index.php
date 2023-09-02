@@ -450,7 +450,7 @@
     <script>
 
     swal({
-      title: "Good job!",
+      title: "Thank You & Have a Good Vacation",
       text: "Successfully Booked",
       icon: "success",
     });
