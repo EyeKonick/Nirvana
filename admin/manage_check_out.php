@@ -2,19 +2,18 @@
 include('db_connect.php');
 if($_GET['id']){
 	$id = $_GET['id'];
-	$qry = $conn->query("SELECT * FROM checked where id =".$id);
+	$qry = $conn->query("SELECT * FROM bookings_tbl where id =".$id);
 	if($qry->num_rows > 0){
 		foreach($qry->fetch_array() as $k => $v){
 			$$k=$v;
 		}
 	}
 	if($room_id > 0){
-	$room = $conn->query("SELECT * FROM rooms where id =".$room_id)->fetch_array();
-	$cat = $conn->query("SELECT * FROM room_categories where id =".$room['category_id'])->fetch_array();
-}else{
-	$cat = $conn->query("SELECT * FROM room_categories where id =".$booked_cid)->fetch_array();
-
-}
+	$room = $conn->query("SELECT * FROM room_tbl where id =".$room_id)->fetch_array();
+	$cat = $conn->query("SELECT * FROM room_type_tbl where id =".$room['room_type_id'])->fetch_array();
+}//else{
+	// $cat = $conn->query("SELECT * FROM room_type_tbl where id =".$booked_cid)->fetch_array();
+// }
  $calc_days = abs(strtotime($date_out) - strtotime($date_in)) ; 
  $calc_days =floor($calc_days / (60*60*24)  );
 }

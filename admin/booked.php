@@ -1,14 +1,16 @@
 <?php include('db_connect.php'); 
-$cat = $conn->query("SELECT * FROM room_categories");
-$cat_arr = array();
-while($row = $cat->fetch_assoc()){
-	$cat_arr[$row['id']] = $row;
+$room_type = $conn->query("SELECT * FROM room_type_tbl");
+$room_type_array = array();
+while($row = $room_type->fetch_assoc()){
+	$room_type_array[$row['id']] = $row;
 }
-$room = $conn->query("SELECT * FROM rooms");
-$room_arr = array();
+
+$room = $conn->query("SELECT * FROM room_tbl");
+$room_array = array();
 while($row = $room->fetch_assoc()){
-	$room_arr[$row['id']] = $row;
+	$room_array[$row['id']] = $row;
 }
+
 ?>
 <div class="container-fluid">
 	<div class="col-lg-12">
@@ -19,22 +21,29 @@ while($row = $room->fetch_assoc()){
 						<table class="table table-bordered">
 							<thead>
 								<th>#</th>
-								<th>Category</th>
-								<th>Reference</th>
-								<th>Status</th>
+								<th>Room Type</th>
+								<th>Check in</th>
+								<th>Check out</th>
+								<th>Date Created</th>
 								<th>Action</th>
 							</thead>
 							<tbody>
 								<?php 
 								$i = 1;
-								$checked = $conn->query("SELECT * FROM checked where status = 0 order by status desc, id asc");
+								$checked = $conn->query("SELECT * FROM bookings_tbl ORDER BY `id` ASC");
 								while($row=$checked->fetch_assoc()):
+									$room_id = $row['room_id'];
+									$room = $room_array[$room_id];
+									$room_type_id = $room['room_type_id'];
+									$room_type = $room_type_array[$room_type_id];
+									$room_name = $room_type['room_name'];
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
-									<td class="text-center"><?php echo $cat_arr[$row['booked_cid']]['name'] ?></td>
-									<td class=""><?php echo $row['ref_no'] ?></td>
-										<td class="text-center"><span class="badge badge-warning">Booked</span></td>
+									<td class="text-center"><?php echo $room_name  ?></td>
+									<td class=""><?php echo $row['check_in'] ?></td>
+									<td class=""><?php echo $row['check_out'] ?></td>
+									<td class=""><?php echo $row['date_created'] ?></td>
 									<td class="text-center">
 											<button class="btn btn-sm btn-primary check_out" type="button" data-id="<?php echo $row['id'] ?>">View</button>
 									</td>
