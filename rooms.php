@@ -108,18 +108,18 @@
         <ul>
           <li class="active"><a href="./index.php">Home</a></li>
           <li><a href="./rooms.php">Rooms</a></li>
-          <li><a href="./about-us.html">About Us</a></li>
+          <li><a href="./about-us.php">About Us</a></li>
           <li>
-            <a href="./pages.html">Pages</a>
+            <a href="./pages.php">Pages</a>
             <ul class="dropdown">
-              <li><a href="./room-details.html">Room Details</a></li>
-              <li><a href="./blog-details.html">Blog Details</a></li>
+              <li><a href="./room-details.php">Room Details</a></li>
+              <li><a href="./blog-details.php">Blog Details</a></li>
               <li><a href="#">Family Room</a></li>
               <li><a href="#">Premium Room</a></li>
             </ul>
           </li>
-          <li><a href="./blog.html">News</a></li>
-          <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./blog.php">News</a></li>
+          <li><a href="./contact.php">Contact</a></li>
         </ul>
       </nav>
       <div id="mobile-menu-wrap"></div>
@@ -154,8 +154,8 @@
                   <ul>
                     <li><a href="./index.php">Home</a></li>
                     <li class="active"><a href="./rooms.php">Rooms</a></li>
-                    <li><a href="./about-us.html">About Us</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./about-us.php">About Us</a></li>
+                    <li><a href="./contact.php">Contact</a></li>
                   </ul>
                 </nav>
                 <div class="nav-right search-switch">
@@ -177,7 +177,7 @@
             <div class="breadcrumb-text">
               <h2>Our Rooms</h2>
               <div class="bt-option">
-                <a href="./home.html">Home</a>
+                <a href="./home.php">Home</a>
                 <span>Rooms</span>
                 <form action="rooms.php" method="post">
                   <div class="check-date mt-5">

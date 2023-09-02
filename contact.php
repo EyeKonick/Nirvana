@@ -7,7 +7,7 @@
     <meta name="keywords" content="Sona, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NIRVANA HIGHLAND RESORT</title>
+    <title>Nirvana</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
@@ -61,17 +61,17 @@
             <ul>
                 <li class="active"><a href="./index.php">Home</a></li>
                 <li><a href="./rooms.php">Rooms</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./pages.html">Pages</a>
+                <li><a href="./about-us.php">About Us</a></li>
+                <li><a href="./pages.php">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
+                        <li><a href="./room-details.php">Room Details</a></li>
+                        <li><a href="./blog-details.php">Blog Details</a></li>
                         <li><a href="#">Family Room</a></li>
                         <li><a href="#">Premium Room</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">News</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./blog.php">News</a></li>
+                <li><a href="./contact.php">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -106,8 +106,8 @@
                                 <ul>
                                     <li><a href="./index.php">Home</a></li>
                                     <li><a href="./rooms.php">Rooms</a></li>
-                                    <li  class="active"><a href="./about-us.html">About Us</a></li>
-                                    <li><a href="./contact.html">Contact</a></li>
+                                    <li><a href="./about-us.php">About Us</a></li>
+                                    <li class="active"><a href="./contact.php">Contact</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">
@@ -121,121 +121,58 @@
     </header>
     <!-- Header End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section">
+    <!-- Contact Section Begin -->
+    <section class="contact-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h2>About Us</h2>
-                        <div class="bt-option">
-                            <a href="./index.php">Home</a>
-                            <span>About Us</span>
-                        </div>
+                <div class="col-lg-4">
+                    <div class="contact-text">
+                        <h2>Contact Info</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="c-o">Address:</td>
+                                    <td>Barangay Agtambi, Dao, Capiz</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Phone:</td>
+                                    <td>(12) 345 67890</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Email:</td>
+                                    <td>nirvana.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+                </div>
+                <div class="col-lg-7 offset-lg-1">
+                    <form action="#" class="contact-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Your Name">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Your Email">
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea placeholder="Your Message"></textarea>
+                                <button type="submit">Submit Now</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Section End -->
-
-    <!-- About Us Page Section Begin -->
-    <section class="aboutus-page-section spad">
-        <div class="container">
-            <div class="about-page-text">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="ap-title">
-                            <h2>Welcome To Nirvana</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque officia neque necessitatibus a quaerat est similique nesciunt ad ipsum quas impedit consequuntur expedita pariatur vel iusto, earum, quos incidunt voluptates?</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 offset-lg-1">
-                        <ul class="ap-services">
-                            <li><i class="icon_check"></i> 20% Off On Accommodation.</li>
-                            <li><i class="icon_check"></i> Complimentary Daily Breakfast</li>
-                            <li><i class="icon_check"></i> 3 Pcs Laundry Per Day</li>
-                            <li><i class="icon_check"></i> Free Wifi.</li>
-                            <li><i class="icon_check"></i> Discount 20% On F&B</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="about-page-services">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p1.jpg">
-                            <div class="api-text">
-                                <h3>Restaurants Services</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p2.jpg">
-                            <div class="api-text">
-                                <h3>Travel & Camping</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p3.jpg">
-                            <div class="api-text">
-                                <h3>Event & Party</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.6536633734922!2d122.68592477588055!3d11.359987848157099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33af67cadeafb7e1%3A0x94a84719418e832e!2sNirvana&#39;s%20Highland%20Resort!5e0!3m2!1sen!2sph!4v1691135897020!5m2!1sen!2sph"
+                    height="470" style="border:0;" allowfullscreen=""></iframe>
             </div>
         </div>
     </section>
-    <!-- About Us Page Section End -->
-
-    <!-- Gallery Section Begin -->
-    <section class="gallery-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Our Gallery</span>
-                        <h2>Discover Our Work</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-1.jpg">
-                        <div class="gi-text">
-                            <h3>Room Luxury</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
-                                <div class="gi-text">
-                                    <h3>Room Luxury</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
-                                <div class="gi-text">
-                                    <h3>Room Luxury</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="gallery-item large-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
-                        <div class="gi-text">
-                            <h3>Room Luxury</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Gallery Section End -->
+    <!-- Contact Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
