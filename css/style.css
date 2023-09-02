@@ -1196,6 +1196,7 @@ header {
 }
 .room-item img {
 	min-width: 100%;
+	height: 233.5px;
 }
 .room-item .ri-text {
 	border: 1px solid #ebebeb;
