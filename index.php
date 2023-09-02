@@ -2,12 +2,31 @@
   session_start();
   include 'db_connection.php';
 
+  $selected_room_name = "";
   $query = "SELECT * FROM `room_type_tbl`";
   $room_types_sql = mysqli_query($connection, $query);
-
+  
   $_SESSION['room_types'] = array();
-  while ($room_type = mysqli_fetch_assoc($room_types_sql))
+  while ($room_type = mysqli_fetch_assoc($room_types_sql)){
     array_push($_SESSION['room_types'], $room_type);
+  }
+  
+  if(isset($_GET['room_id']) && !empty($_GET['room_id'])){
+    $selected_room_id = $_GET['room_id'];
+    $query = "SELECT `room_tbl`.*, `room_type_tbl`.`room_name` FROM `room_tbl` INNER JOIN `room_type_tbl` ON `room_tbl`.room_type_id = `room_type_tbl`.id WHERE `room_tbl`.`id`=$selected_room_id";
+    $room_sql = mysqli_query($connection, $query);
+    $selected_room = mysqli_fetch_assoc($room_sql);
+    $selected_room_name = $selected_room['room_name'];
+  }
+  if (isset($_POST["date_in"]) && !empty($_POST["date_in"]) &&  isset($_POST["date_out"]) &&!empty($_POST["date_out"])){
+    $date_in = new DateTime($_POST['date_in']);
+    $date_out = new DateTime($_POST['date_out']);
+    $formated_in = $date_in->format("Y-m-d");
+    $formated_out = $date_out->format("Y-m-d");
+    $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
+    echo $query;
+    // mysqli_query($connection, $query);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -144,18 +163,18 @@
               <form action="rooms.php">
                 <div class="choose-room mb-3">
                   <button onclick="location.href='rooms.php'">Choose room</button>
-                  <input class="room-field" type="text" placeholder="Room name" disabled>
+                  <input class="room-field" type="text" placeholder="<?php echo $selected_room_name ?>" disabled>
                 </div>
               </form>
-              <form action="index.php">
+              <form action="index.php" method="post">
               <div class="check-date">
                   <label for="date-in">Check In:</label>
-                  <input type="text" class="date-input" id="date-in" />
+                  <input type="text" class="date-input" id="date-in" name="date_in"/>
                   <i class="icon_calendar"></i>
                 </div>
                 <div class="check-date">
                   <label for="date-out">Check Out:</label>
-                  <input type="text" class="date-input" id="date-out" />
+                  <input type="text" class="date-input" id="date-out" name="date_out"/>
                   <i class="icon_calendar"></i>
                 </div>
                 <button type="submit">BOOK NOW

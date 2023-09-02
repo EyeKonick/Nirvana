@@ -1,14 +1,43 @@
 <?php 
   session_start(); 
+  include 'db_connection.php';
+  // Get all room types to display in rooms page
   if(!$_SESSION['room_types']){
-    include 'db_connection.php';
     
     $query = "SELECT * FROM `room_type_tbl`";
     $room_types_sql = mysqli_query($connection, $query);
 
     $_SESSION['room_types'] = array();
-    while ($room_type = mysqli_fetch_assoc($room_types_sql))
+    while ($room_type = mysqli_fetch_assoc($room_types_sql)){
       array_push($_SESSION['room_types'], $room_type);
+    }
+  }
+
+  // get all rooms in room table
+  $query = "SELECT * FROM `room_tbl`";
+  $room_sql = mysqli_query($connection, $query);
+  $rooms = array();
+  while ($room = mysqli_fetch_assoc($room_sql)){
+    array_push($rooms, $room);
+  }
+
+  // get all tickets that are within the date for check room availability
+  if(isset($_POST['date_to_check']) && !empty($_POST['date_to_check'])){
+    $date = new DateTime($_POST['date_to_check']);
+    $date_to_check = $date->format("Y-m-d");
+    $query = "SELECT `room_id` FROM `bookings_tbl` WHERE `check_in` <= '$date_to_check' AND `check_out` >= '$date_to_check'";
+    $bookings_sql = mysqli_query($connection, $query); 
+    
+    // Loop through tickets and rooms to check if room is already booked and remove it in rooms to indicate it is unavailable
+    while($booking =  mysqli_fetch_assoc($bookings_sql)){
+      for ($i=0; $i < sizeof($rooms); $i++) { 
+        if($rooms[$i]['id'] == $booking['room_id']){
+          unset($rooms[$i]);
+        }
+      }
+    }
+  }else{
+    $_POST['date_to_check'] = "";
   }
 ?>
 <!DOCTYPE html>
@@ -150,12 +179,14 @@
               <div class="bt-option">
                 <a href="./home.html">Home</a>
                 <span>Rooms</span>
-                <div class="check-date mt-5">
-                  <label for="date-out">Check Date Available: </label>
-                  <input type="text" class="date-input" id="date-out"/>
-                  <i class="icon_calendar"></i>
-                </div>
-                <button class="btn btn-primary primary-btn mt-3 p-2" type="submit">Check Availability</button>
+                <form action="rooms.php" method="post">
+                  <div class="check-date mt-5">
+                    <label for="date-out">Check Date Available: </label>
+                    <input type="text" class="date-input" id="date-out" name="date_to_check" value="<?php echo $_POST['date_to_check'] ?>"/>
+                    <i class="icon_calendar"></i>
+                  </div>
+                  <button class="btn btn-primary primary-btn mt-3 p-2" type="submit">Check Availability</button>
+                </form>
               </div>
             </div>
           </div>
@@ -171,6 +202,15 @@
           <?php
             for($count = 4; $count < 10; $count++ ){
               $room_type = $_SESSION['room_types'][$count];
+              $status = "unavailable";
+              $avail_room_id = 0;
+              // set status of rooms into available if have a matching id in rooms array.
+              foreach($rooms as $room){
+                if($room["room_type_id"] == $room_type['id']){
+                  $status = "available";
+                  $avail_room_id = $room['id'];
+                }
+              }
           ?>
           <div class="col-lg-4 col-md-6">
             <div class="room-color">
@@ -199,7 +239,11 @@
                       </tr>
                     </tbody>
                   </table>
-                  <a href="" class="primary-btn"><br>available</a>
+                  <a href="index.php?room_id=<?php echo $avail_room_id ?>" class="primary-btn"><br>
+                  <?php 
+                    echo $status;
+                  ?>
+                  </a>
                 </div>
               </div>
             </div>
