@@ -22,8 +22,11 @@
     $date_out = new DateTime($_POST['date_out']);
     $formated_in = $date_in->format("Y-m-d");
     $formated_out = $date_out->format("Y-m-d");
-    $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
-    mysqli_query($connection, $query);
+    if(isset($_GET['room_id']) && !empty($_GET['room_id'])){
+      $selected_room_id = $_GET['room_id'];
+      $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
+      mysqli_query($connection, $query);
+    }
   }
 ?>
 <!DOCTYPE html>
