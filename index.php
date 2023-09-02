@@ -237,13 +237,13 @@
           <div class="row">
             <?php
               // Temporary array for room images -> TODO: Remove if replacement is found
-              $png_array = array("img/room/venue-hall.png","img/room/bahay-kubo.png", "img/room/bahay-medium.png", "img/room/bahay-medium.png");
               for($count = 0; $count < 4; $count++){
+                $image = $_SESSION['room_types'][$count]['image_src'];
             ?>
             <div class="col-lg-3 col-md-6">
               <div
                 class="hp-room-item set-bg"
-                data-setbg=<?php echo $png_array[$count] ?>
+                data-setbg=<?php echo "img/room/$image"?>
               >
                 <div class="hr-text">
                   <h3><?php echo $_SESSION['room_types'][$count]['room_name'] ?></h3>
