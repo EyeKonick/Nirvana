@@ -99,8 +99,8 @@
         <ul>
           <li class="active"><a href="./index.php">Home</a></li>
           <li><a href="./rooms.php">Rooms</a></li>
-          <li><a href="./about-us.html">About Us</a></li>
-          <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./about-us.php">About Us</a></li>
+          <li><a href="./contact.php">Contact</a></li>
         </ul>
       </nav>
       <div id="mobile-menu-wrap"></div>
@@ -135,8 +135,8 @@
                   <ul>
                     <li class="active"><a href="./index.php">Home</a></li>
                     <li><a href="./rooms.php">Rooms</a></li>
-                    <li><a href="./about-us.html">About Us</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./about-us.php">About Us</a></li>
+                    <li><a href="./contact.php">Contact</a></li>
                   </ul>
                 </nav>
                 <div class="nav-right search-switch">
@@ -268,7 +268,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <a href="#" class="primary-btn">BOOK NOW</a>
+                  <a href="./rooms.php" class="primary-btn">SEE MORE</a>
                 </div>
               </div>
             </div>
