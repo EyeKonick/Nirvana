@@ -19,7 +19,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">Category</label>
-								<select class="custom-select browser-default" name="category_id">
+								<select class="custom-select browser-default" name="room-type-id">
 									<?php 
 									$cat = $conn->query("SELECT * FROM room_type_tbl order by `room_name` asc ");
 									$room_types = array();
@@ -116,8 +116,7 @@
 		cat.get(0).reset()
 		cat.find("[name='id']").val($(this).attr('data-id'))
 		cat.find("[name='room-number']").val($(this).attr('data-room-number'))
-		cat.find("[name='category_id']").val($(this).attr('data-room-type-id'))
-		cat.find("[name='status']").val($(this).attr('data-status'))
+		cat.find("[name='room-type-id']").val($(this).attr('data-room-type-id'))
 		end_load()
 	})
 	$('.delete_cat').click(function(){

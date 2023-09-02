@@ -25,7 +25,6 @@ while($row = $room->fetch_assoc()){
 								<th>Check in</th>
 								<th>Check out</th>
 								<th>Date Created</th>
-								<th>Action</th>
 							</thead>
 							<tbody>
 								<?php 
@@ -44,9 +43,7 @@ while($row = $room->fetch_assoc()){
 									<td class=""><?php echo $row['check_in'] ?></td>
 									<td class=""><?php echo $row['check_out'] ?></td>
 									<td class=""><?php echo $row['date_created'] ?></td>
-									<td class="text-center">
-											<button class="btn btn-sm btn-primary check_out" type="button" data-id="<?php echo $row['id'] ?>">View</button>
-									</td>
+
 								</tr>
 							<?php endwhile; ?>
 							</tbody>
