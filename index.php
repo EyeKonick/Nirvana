@@ -11,7 +11,8 @@
   }
   
   if(isset($_GET['room_id']) && !empty($_GET['room_id'])){
-    $selected_room_id = $_GET['room_id'];
+    $_SESSION['selected_room_id'] = $_GET['room_id'];
+    $selected_room_id = $_SESSION['selected_room_id'];
     $query = "SELECT `room_tbl`.*, `room_type_tbl`.`room_name` FROM `room_tbl` INNER JOIN `room_type_tbl` ON `room_tbl`.room_type_id = `room_type_tbl`.id WHERE `room_tbl`.`id`=$selected_room_id";
     $room_sql = mysqli_query($connection, $query);
     $selected_room = mysqli_fetch_assoc($room_sql);
@@ -22,11 +23,9 @@
     $date_out = new DateTime($_POST['date_out']);
     $formated_in = $date_in->format("Y-m-d");
     $formated_out = $date_out->format("Y-m-d");
-    if(isset($_GET['room_id']) && !empty($_GET['room_id'])){
-      $selected_room_id = $_GET['room_id'];
-      $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
-      mysqli_query($connection, $query);
-    }
+    $selected_room_id = $_SESSION['selected_room_id'];
+    $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
+    mysqli_query($connection, $query);
   }
 ?>
 <!DOCTYPE html>
