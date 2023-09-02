@@ -177,7 +177,7 @@
                   <input type="text" class="date-input" id="date-out" name="date_out"/>
                   <i class="icon_calendar"></i>
                 </div>
-                <button type="submit">BOOK NOW
+                <button type="submit" class="book_btn">BOOK NOW
                 </button>
               </form>
             </div>

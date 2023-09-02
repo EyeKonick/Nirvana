@@ -108,7 +108,7 @@ ul, ol {
 }
 .section-title h2 {
 	font-size: 44px;
-	color: #19191a;
+	color: #36367d;
 	line-height: 58px;
 	margin-top: 10px;
 }
@@ -621,10 +621,15 @@ header {
 	border-radius: 2px;
 	color:  #ffffff;
 	font-weight: 500;
-	background: transparent;
+	background: #071952;
 	width: 100%;
 	height: 46px;
 	margin-top: 30px;
+}
+
+.booking-form form button:hover {
+	background: #d1d4de;
+	color:  #071952;
 }
 .hero-slider {
 	position: absolute;
