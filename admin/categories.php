@@ -14,20 +14,29 @@
 					<div class="card-body">
 							<input type="hidden" name="id">
 							<div class="form-group">
-								<label class="control-label">Category</label>
+								<label class="control-label">Room Name</label>
 								<input type="text" class="form-control" name="name">
 							</div>
 							<div class="form-group">
 								<label class="control-label">Price</label>
-								<input type="number" class="form-control text-right" name="price" step="any">
+								<input type="number" class="form-control " name="price" step="any">
 							</div>
 							<div class="form-group">
-								<label for="" class="control-label">Image</label>
-								<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))">
+								<label class="control-label">Size</label>
+								<input type="number" class="form-control " name="size" step="any">
 							</div>
 							<div class="form-group">
-								<img src="<?php echo isset($image_path) ? '../assets/img/'.$cover_img :'' ?>" alt="" id="cimg">
-							</div>
+								<label class="control-label">Bed</label>
+								<input type="text" class="form-control" name="bed" >
+							</div>	
+							<div class="form-group">
+								<label class="control-label">Capacity</label>
+								<input type="number" class="form-control" name="capacity">
+							</div>	
+							<div class="form-group">
+								<label class="control-label">Services</label>
+								<input type="text" class="form-control" name="services">
+							</div>	
 					</div>
 							
 					<div class="card-footer">
@@ -51,7 +60,6 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="text-center">Img</th>
 									<th class="text-center">Room</th>
 									<th class="text-center">Action</th>
 								</tr>
@@ -59,22 +67,29 @@
 							<tbody>
 								<?php 
 								$i = 1;
-								$cats = $conn->query("SELECT * FROM room_categories order by id asc");
+								$cats = $conn->query("SELECT * FROM room_type_tbl order by id asc");
 								while($row=$cats->fetch_assoc()):
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
-
-								
-									<td class="text-center">
-										<img src="<?php echo isset($row['cover_img']) ? '../assets/img/'.$row['cover_img'] :'' ?>" alt="" id="cimg">
-									</td>
 									<td class="">
-										<p>Name : <b><?php echo $row['name'] ?></b></p>
-										<p>Price : <b><?php echo "$".number_format($row['price'],2) ?></b></p>
+										<p>Name : <b><?php echo $row['room_name'] ?></b></p>
+										<p>Price : <b><?php echo "₱".number_format($row['cost'],2) ?></b></p>
+										<p>Size : <b><?php echo $row['size'] ?></b></p>
+										<p>Bed : <b><?php echo $row['bed'] ?></b></p>
+										<p>Capacity : <b><?php echo $row['capacity'] ?></b></p>
+										<p>Services : <b><?php echo $row['services'] ?></b></p>
 									</td>
 									<td class="text-center">
-										<button class="btn btn-sm btn-primary edit_cat" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-price="<?php echo $row['price'] ?>" data-cover_img="<?php echo $row['cover_img'] ?>">Edit</button>
+										<button class="btn btn-sm btn-primary edit_cat" type="button" 
+											data-id="<?php echo $row['id'] ?>" 
+											data-name="<?php echo $row['room_name'] ?>" 
+											data-price="<?php echo $row['cost'] ?>"
+											data-size="<?php echo $row['size'] ?>"
+											data-bed="<?php echo $row['bed'] ?>"
+											data-capacity="<?php echo $row['capacity'] ?>"
+											data-services="<?php echo $row['services'] ?>"
+										>Edit</button>
 										<button class="btn btn-sm btn-danger delete_cat" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
 									</td>
 								</tr>
@@ -145,7 +160,10 @@
 		cat.find("[name='id']").val($(this).attr('data-id'))
 		cat.find("[name='name']").val($(this).attr('data-name'))
 		cat.find("[name='price']").val($(this).attr('data-price'))
-		cat.find("#cimg").attr('src','../assets/img/'+$(this).attr('data-cover_img'))
+		cat.find("[name='size']").val($(this).attr('data-size'))
+		cat.find("[name='bed']").val($(this).attr('data-bed'))
+		cat.find("[name='capacity']").val($(this).attr('data-capacity'))
+		cat.find("[name='services']").val($(this).attr('data-services'))
 		end_load()
 	})
 	$('.delete_cat').click(function(){
