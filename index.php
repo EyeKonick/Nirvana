@@ -23,8 +23,7 @@
     $formated_in = $date_in->format("Y-m-d");
     $formated_out = $date_out->format("Y-m-d");
     $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
-    echo $query;
-    // mysqli_query($connection, $query);
+    mysqli_query($connection, $query);
   }
 ?>
 <!DOCTYPE html>
