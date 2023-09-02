@@ -1,4 +1,4 @@
-<?php include('db_connect.php'); ?>
+<!-- <?php include('db_connect.php'); ?>
 <div class="container-fluid">
 	<div class="col-lg-12">
 		<div class="row">
@@ -94,4 +94,4 @@
 		e.preventDefault()
 		location.replace('index.php?page=check_in&category_id='+$(this).find('[name="category_id"]').val()+'&status='+$(this).find('[name="status"]').val())
 	})
-</script>
+</script> -->

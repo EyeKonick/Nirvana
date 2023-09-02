@@ -25,7 +25,9 @@
     $formated_out = $date_out->format("Y-m-d");
     $selected_room_id = $_SESSION['selected_room_id'];
     $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
-    mysqli_query($connection, $query);
+    $query_success = mysqli_query($connection, $query);
+
+    
   }
 ?>
 <!DOCTYPE html>
@@ -36,6 +38,7 @@
     <meta name="keywords" content="Sona, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>NIRVANA HIGHLAND RESORT</title>
 
     <!-- Google Font -->
@@ -437,3 +440,25 @@
     <script src="js/main.js"></script>
   </body>
 </html>
+
+<?php
+
+  if($query_success){
+
+    ?>
+
+    <script>
+
+    swal({
+      title: "Good job!",
+      text: "Successfully Booked",
+      icon: "success",
+    });
+
+    </script>
+
+    <?php
+  }
+
+
+?>

@@ -1,4 +1,4 @@
-<?php include('db_connect.php'); 
+<!-- <?php include('db_connect.php'); 
 $cat = $conn->query("SELECT * FROM room_categories");
 $cat_arr = array();
 while($row = $cat->fetch_assoc()){
@@ -64,4 +64,4 @@ while($row = $room->fetch_assoc()){
 		e.preventDefault()
 		location.replace('index.php?page=check_in&category_id='+$(this).find('[name="category_id"]').val()+'&status='+$(this).find('[name="status"]').val())
 	})
-</script>
+</script> -->
