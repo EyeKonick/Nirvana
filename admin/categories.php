@@ -9,26 +9,18 @@
 			<form action="" id="manage-category">
 				<div class="card">
 					<div class="card-header">
-						    Room Category Form
+						    Cottage Category Form
 				  	</div>
 					<div class="card-body">
 							<input type="hidden" name="id">
 							<div class="form-group">
-								<label class="control-label">Room Name</label>
+								<label class="control-label">Cottage Name</label>
 								<input type="text" class="form-control" name="name">
 							</div>
 							<div class="form-group">
 								<label class="control-label">Price</label>
 								<input type="number" class="form-control " name="price" step="any">
 							</div>
-							<div class="form-group">
-								<label class="control-label">Size</label>
-								<input type="number" class="form-control " name="size" step="any">
-							</div>
-							<div class="form-group">
-								<label class="control-label">Bed</label>
-								<input type="text" class="form-control" name="bed" >
-							</div>	
 							<div class="form-group">
 								<label class="control-label">Capacity</label>
 								<input type="number" class="form-control" name="capacity">
@@ -75,8 +67,6 @@
 									<td class="">
 										<p>Name : <b><?php echo $row['room_name'] ?></b></p>
 										<p>Price : <b><?php echo "₱".number_format($row['cost'],2) ?></b></p>
-										<p>Size : <b><?php echo $row['size'] ?></b></p>
-										<p>Bed : <b><?php echo $row['bed'] ?></b></p>
 										<p>Capacity : <b><?php echo $row['capacity'] ?></b></p>
 										<p>Services : <b><?php echo $row['services'] ?></b></p>
 									</td>
@@ -85,8 +75,6 @@
 											data-id="<?php echo $row['id'] ?>" 
 											data-name="<?php echo $row['room_name'] ?>" 
 											data-price="<?php echo $row['cost'] ?>"
-											data-size="<?php echo $row['size'] ?>"
-											data-bed="<?php echo $row['bed'] ?>"
 											data-capacity="<?php echo $row['capacity'] ?>"
 											data-services="<?php echo $row['services'] ?>"
 										>Edit</button>
@@ -160,8 +148,6 @@
 		cat.find("[name='id']").val($(this).attr('data-id'))
 		cat.find("[name='name']").val($(this).attr('data-name'))
 		cat.find("[name='price']").val($(this).attr('data-price'))
-		cat.find("[name='size']").val($(this).attr('data-size'))
-		cat.find("[name='bed']").val($(this).attr('data-bed'))
 		cat.find("[name='capacity']").val($(this).attr('data-capacity'))
 		cat.find("[name='services']").val($(this).attr('data-services'))
 		end_load()

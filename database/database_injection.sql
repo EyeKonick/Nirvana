@@ -45,7 +45,7 @@ CREATE TABLE `bookings_tbl` (
   `check_out` DATE NOT NULL,
   `date_created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   FOREIGN KEY (`room_id`) REFERENCES `room_tbl`(`id`)
-);
+);0
 
 -- Table Data Dump
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES

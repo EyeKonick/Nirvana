@@ -1,7 +1,7 @@
 
 <style>
 	nav#sidebar {
-    background: skyblue;
+    background: purple;
     background-repeat: no-repeat;
     background-size: cover;
 	}

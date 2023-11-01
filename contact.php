@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="basic/style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -60,11 +61,11 @@
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="./index.php">Home</a></li>
-                <li><a href="./rooms.php">Rooms</a></li>
+                <li><a href="./rooms.php">Cottage</a></li>
                 <li><a href="./about-us.php">About Us</a></li>
                 <li><a href="./pages.php">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="./room-details.php">Room Details</a></li>
+                        <li><a href="./room-details.php">Cottage Details</a></li>
                         <li><a href="./blog-details.php">Blog Details</a></li>
                         <li><a href="#">Family Room</a></li>
                         <li><a href="#">Premium Room</a></li>
@@ -105,7 +106,7 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li><a href="./index.php">Home</a></li>
-                                    <li><a href="./rooms.php">Rooms</a></li>
+                                    <li><a href="./rooms.php">Cottage</a></li>
                                     <li><a href="./about-us.php">About Us</a></li>
                                     <li class="active"><a href="./contact.php">Contact</a></li>
                                 </ul>

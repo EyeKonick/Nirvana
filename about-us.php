@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="basic/style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -87,6 +88,8 @@
         </ul>
     </div>
     <!-- Offcanvas Menu Section End -->
+    
+
 
     <!-- Header Section Begin -->
     <header class="header-section header-normal">
@@ -105,7 +108,7 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li><a href="./index.php">Home</a></li>
-                                    <li><a href="./rooms.php">Rooms</a></li>
+                                    <li><a href="./rooms.php">Cottage</a></li>
                                     <li  class="active"><a href="./about-us.php">About Us</a></li>
                                     <li><a href="./contact.php">Contact</a></li>
                                 </ul>
@@ -161,7 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div class="about-page-services">
+           <!-- <div class="about-page-services">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="ap-service-item set-bg" data-setbg="img/about/about-p1.jpg">
@@ -185,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </section>
     <!-- About Us Page Section End -->
@@ -233,6 +236,73 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-1.jpg">
+                        <div class="gi-text">
+                            <h3>Room Luxury</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
+                                <div class="gi-text">
+                                    <h3>Room Luxury</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
+                                <div class="gi-text">
+                                    <h3>Room Luxury</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="gallery-item large-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
+                        <div class="gi-text">
+                            <h3>Room Luxury</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-1.jpg">
+                        <div class="gi-text">
+                            <h3>Room Luxury</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
+                                <div class="gi-text">
+                                    <h3>Room Luxury</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
+                                <div class="gi-text">
+                                    <h3>Room Luxury</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="gallery-item large-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
+                        <div class="gi-text">
+                            <h3>Room Luxury</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     <!-- Gallery Section End -->

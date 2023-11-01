@@ -185,7 +185,7 @@
                     <input type="text" class="date-input" id="date-out" name="date_to_check" value="<?php echo $_POST['date_to_check'] ?>"/>
                     <i class="icon_calendar"></i>
                   </div>
-                  <button class="btn btn-primary primary-btn mt-3 p-2" type="submit">Check Availability</button>
+                  <button class="btn btn-primary primary-btn mt-3 p-2" type="submit">Check yoursss</button>
                 </form>
               </div>
             </div>
@@ -197,9 +197,9 @@
 
     <div class="col-lg-12">
           <div class="room-pagination">
-              <a href="rooms.php" class="active">Small</a>
-              <a href="medium.php">medium</a>
-              <a href="bahaykubo.php">Bahay Kubo</a>
+              <a href="rooms.php">Small</a>
+              <a href="roomsmedium.php">medium</a>
+              <a href="bahaykubo.php" class="active">Bahay Kubo</a>
               <a href="venuehall.php">Venue Hall</a>
             </div>
 

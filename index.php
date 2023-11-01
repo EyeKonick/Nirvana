@@ -18,17 +18,20 @@
     $selected_room = mysqli_fetch_assoc($room_sql);
     $selected_room_name = $selected_room['room_name'];
   }
-  if (isset($_POST["date_in"]) && !empty($_POST["date_in"]) &&  isset($_POST["date_out"]) &&!empty($_POST["date_out"])){
+  if (isset($_POST["date_in"]) && !empty($_POST["date_in"]) && isset($_POST["date_out"]) && !empty($_POST["date_out"]) &&  isset($_POST["name"]) &&  isset($_POST["contact_number"])){
     $date_in = new DateTime($_POST['date_in']);
     $date_out = new DateTime($_POST['date_out']);
+    $name = ($_POST['name']);
+    $contact_number = ($_POST['contact_number']);
     $formated_in = $date_in->format("Y-m-d");
     $formated_out = $date_out->format("Y-m-d");
     $selected_room_id = $_SESSION['selected_room_id'];
-    $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`) VALUES ($selected_room_id, '$formated_in', '$formated_out');";
+    $query = "INSERT INTO `bookings_tbl` (`room_id`, `check_in`, `check_out`, `name`, `contact_number`) VALUES ($selected_room_id, '$formated_in', '$formated_out', '$name', '$contact_number');";
     $query_success = mysqli_query($connection, $query);
 
     
   }
+  
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -39,7 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>NIRVANA HIGHLAND RESORT</title>
+    <title>NIRVANA'S HIGHLANDS RESORT</title>
 
     <!-- Google Font -->
     <link
@@ -61,7 +64,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="basic/style.css" type="text/css" />
   </head>
 
   <body>
@@ -98,7 +101,7 @@
       <nav class="mainmenu mobile-menu">
         <ul>
           <li class="active"><a href="./index.php">Home</a></li>
-          <li><a href="./rooms.php">Rooms</a></li>
+          <li><a href="./rooms.php">Cottage</a></li>
           <li><a href="./about-us.php">About Us</a></li>
           <li><a href="./contact.php">Contact</a></li>
         </ul>
@@ -134,9 +137,9 @@
                 <nav class="mainmenu">
                   <ul>
                     <li class="active"><a href="./index.php">Home</a></li>
-                    <li><a href="./rooms.php">Rooms</a></li>
+                    <li><a href="./rooms.php">Cottage</a></li>
                     <li><a href="./about-us.php">About Us</a></li>
-                    <li><a href="./contact.php">Contact</a></li>
+                    <li><a href="./contact.php">Contact</a></li>                   
                   </ul>
                 </nav>
                 <div class="nav-right search-switch">
@@ -156,16 +159,32 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="hero-text">
-              <h1>Nirvana Highland Resort</h1>
+              <h1 class="title">Nirvana's Highlands Resort</h1>
               <p>BARANGAY AGTAMBI, DAO, CAPIZ</p>
             </div>
           </div>
+          
+        </div>
+      </div>
+      <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="img/hero/6.jpeg"></div>
+        <div class="hs-item set-bg" data-setbg="img/hero/9.jpeg"></div>
+        <div class="hs-item set-bg" data-setbg="img/hero/10.jpeg"></div>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <section class="hero-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+          </div>
           <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
             <div class="booking-form">
-              <h3>Booking Your Hotel</h3>
+              <h3>Book Your Cottage</h3>
               <form action="rooms.php">
                 <div class="choose-room mb-3">
-                  <button onclick="location.href='rooms.php'">Choose room</button>
+                  <button onclick="location.href='rooms.php'">Choose cottage</button>
                   <input class="room-field" type="text" placeholder="<?php echo $selected_room_name ?>" disabled>
                 </div>
               </form>
@@ -180,6 +199,16 @@
                   <input type="text" class="date-input" id="date-out" name="date_out"/>
                   <i class="icon_calendar"></i>
                 </div>
+
+                <div class="choose-room mb-3">
+                <label>Full Name:</label>
+                  <<input class="room-field" type="text" id="name"  name="name" required/>
+                </div>
+
+                <div class="choose-room mb-3">
+                <label>Contact Number:</label>
+                  <<input class="room-field" type="int" id="contact_number" name="contact_number" maxlength="10" required/> 
+                </div>
                 <button type="submit" class="book_btn">BOOK NOW
                 </button>
               </form>
@@ -187,13 +216,8 @@
           </div>
         </div>
       </div>
-      <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
-      </div>
-    </section>
-    <!-- Hero Section End -->
+              </section>
+
 
     <!-- About Us Section Begin -->
     <section class="aboutus-section spad">
@@ -203,7 +227,7 @@
             <div class="about-text">
               <div class="section-title">
                 <span>About Us</span>
-                <h2>NIRVANA<br />HIGHLAND RESORT</h2>
+                <h2>NIRVANA'S<br />HIGHLANDS RESORT</h2>
               </div>
               <p class="f-para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -217,10 +241,10 @@
             <div class="about-pic">
               <div class="row">
                 <div class="col-sm-6">
-                  <img src="img/about/about-1.jpg" alt="" />
+                  <img src="img/about/16.jpeg" alt="" />
                 </div>
                 <div class="col-sm-6">
-                  <img src="img/about/about-2.jpg" alt="" />
+                  <img src="img/about/20.jpeg" alt="" />
                 </div>
               </div>
             </div>
@@ -247,20 +271,12 @@
               >
                 <div class="hr-text">
                   <h3><?php echo $_SESSION['room_types'][$count]['room_name'] ?></h3>
-                  <h2>₱<?php echo $_SESSION['room_types'][$count]['cost'] ?><span>/Pernight</span></h2>
+                  <h2>₱<?php echo $_SESSION['room_types'][$count]['cost'] ?></h2>
                   <table>
-                    <tbody>
-                      <tr>
-                        <td class="r-o">Size:</td>
-                        <td><?php echo $_SESSION['room_types'][$count]['size'] ?> ft</td>
-                      </tr>
+                    <tbody>               
                       <tr>
                         <td class="r-o">Capacity:</td>
                         <td>Max person <?php echo $_SESSION['room_types'][$count]['capacity'] ?></td>
-                      </tr>
-                      <tr>
-                        <td class="r-o">Bed:</td>
-                        <td><?php echo $_SESSION['room_types'][$count]['bed'] ?></td>
                       </tr>
                       <tr>
                         <td class="r-o">Services:</td>
@@ -279,6 +295,8 @@
     </section>
     <!-- Home Room Section End -->
 
+
+
     <!-- Testimonial Section Begin -->
     <section class="testimonial-section spad">
       <div class="container">
@@ -295,7 +313,10 @@
             <div class="testimonial-slider owl-carousel">
               <div class="ts-item">
                 <p>
-                  My experience in Nirvana's Highlands Resort was a memorable experience together with my friends. I never get bored because there are lots of activities to do inside the resort. For me, this is the best place to go if you are planing to unwind,or to have vacation, and even a venue for some ocasions such as birthdays, wedding etc. 
+                  My experience in Nirvana's Highlands Resort was a memorable experience together
+                   with my friends. I never get bored because there are lots of activities to do inside 
+                   he resort. For me, this is the best place to go if you are planing to unwind,or to have
+                    vacation, and even a venue for some ocasions such as birthdays, wedding etc. 
                 </p>
                 <div class="ti-author">
                   <div class="rating">
@@ -305,13 +326,17 @@
                     <i class="icon_star"></i>
                     <i class="icon_star-half_alt"></i>
                   </div>
-                  <h5>- Jennel Franco</h5>
+                  <h5>- Jiggen Paa Pula</h5>
                 </div>
                 <img style="height: 100px; width: 100px; border-radius: 50%;" src="img/testimonial/user1.jpg" alt="" />
               </div>
               <div class="ts-item">
                 <p>
-                  Ang Nirvana's Highlands Resort ay masarap balik balikan dahil sa ganda ng tanawin, masarap mag swimming, at maraming pwedeng gawin na siguradong sulit ang pera mo. Ang paligid doon ay napakalinis na kahit isang pirasong plastic ay wala kang makikita dahil disiplinado ang mga tao doon. kaya ano pang hinihintay mo, ayain mo na ang iyong mga barkada or kapamilya dahil mas lalong mag-eenjoy ka pag marami kang kasama. 
+                  Ang Nirvana's Highlands Resort ay masarap balik balikan dahil sa ganda ng tanawin, 
+                  masarap mag swimming, at maraming pwedeng gawin na siguradong sulit ang pera mo. Ang
+                   paligid doon ay napakalinis na kahit isang pirasong plastic ay wala kang makikita dahil 
+                   disiplinado ang mga tao doon. kaya ano pang hinihintay mo, ayain mo na ang iyong mga
+                    barkada or kapamilya dahil mas lalong mag-eenjoy ka pag marami kang kasama. 
                 </p>
                 <div class="ti-author">
                   <div class="rating">

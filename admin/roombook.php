@@ -115,7 +115,7 @@ if(!isset($_SESSION["user"]))
                         <a href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
 					<li>
-                        <a class="active-menu" href="roombook.php"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
+                        <a class="active-menu" href="roombook.php"><i class="fa fa-bar-chart-o"></i> Cottage Booking</a>
                     </li>
                     <li>
                         <a href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
@@ -148,7 +148,7 @@ if(!isset($_SESSION["user"]))
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Room Booking<small>	<?php echo  $curdate; ?> </small>
+                            Cottage Booking<small>	<?php echo  $curdate; ?> </small>
                         </h1>
                     </div>
 					
@@ -156,7 +156,7 @@ if(!isset($_SESSION["user"]))
 					<div class="col-md-8 col-sm-8">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                           Booking Conformation
+                           Booking Confirmation
                         </div>
                         <div class="panel-body">
 							

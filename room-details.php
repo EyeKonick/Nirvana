@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="basic/style.css" type="text/css">
 </head>
 
 <body>
@@ -66,8 +66,8 @@
                     <ul class="dropdown">
                         <li><a href="./room-details.php">Room Details</a></li>
                         <li><a href="./blog-details.php">Blog Details</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
+                        <li><a href="#">Family Cottage</a></li>
+                        <li><a href="#">Premium Cottage</a></li>
                     </ul>
                 </li>
                 <li><a href="./blog.php">News</a></li>
@@ -138,14 +138,14 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li><a href="./index.php">Home</a></li>
-                                    <li class="active"><a href="./rooms.php">Rooms</a></li>
+                                    <li class="active"><a href="./rooms.php">Cottage</a></li>
                                     <li><a href="./about-us.php">About Us</a></li>
                                     <li><a href="./pages.php">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="./room-details.php">Room Details</a></li>
+                                            <li><a href="./room-details.php">Cottage Details</a></li>
                                             <li><a href="./blog-details.php">Blog Details</a></li>
-                                            <li><a href="#">Family Room</a></li>
-                                            <li><a href="#">Premium Room</a></li>
+                                            <li><a href="#">Family Cottage</a></li>
+                                            <li><a href="#">Premium Cottage</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="./blog.php">News</a></li>
@@ -169,10 +169,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Our Rooms</h2>
+                        <h2>Our Cottage</h2>
                         <div class="bt-option">
                             <a href="./home.php">Home</a>
-                            <span>Rooms</span>
+                            <span>Cottages</span>
                         </div>
                     </div>
                 </div>

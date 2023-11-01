@@ -91,7 +91,7 @@ a.custom-menu-list span.icon{
 			</div>
 			<div class="card col-md-4 offset-2 bg-primary ml-4 float-left">
 				<div class="card-body text-white">
-					<h4><b>Rooms</b></h4>
+					<h4><b>Cottages</b></h4>
 					<hr>
 					<span class="card-icon"><i class="fa fa-user-tie"></i></span>
 					<h3 class="text-right"><b></b></h3>

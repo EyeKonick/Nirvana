@@ -22,8 +22,8 @@
 }
 
 body {
-  background: #2c3338;
-  color: #606468;
+  background: #0a85dd;
+  color: #044e01;
   font: 87.5%/1.5em 'Open Sans', sans-serif;
   margin: 0;
   overflow-y:auto !important;
@@ -53,7 +53,7 @@ p {
 }
 
 .clearfix {
-  *zoom: 1;
+  zoom: 1;
 }
 .clearfix:before, .clearfix:after {
   content: ' ';
@@ -78,9 +78,9 @@ p {
 }
 
 #login form span {
-  background-color: #363b41;
+  background-color: #c512b6;
   border-radius: 3px 0px 0px 3px;
-  color: #606468;
+  color: #10559b;
   display: block;
   float: left;
   height: 50px;
@@ -94,7 +94,7 @@ p {
 }
 
 #login form input[type="text"], input[type="password"] {
-  background-color: #3b4148;
+  background-color: #c708bd;
   border-radius: 0px 3px 3px 0px;
   color: #606468;
   margin-bottom: 1em;

@@ -21,10 +21,14 @@ while($row = $room->fetch_assoc()){
 						<table class="table table-bordered">
 							<thead>
 								<th>#</th>
-								<th>Room Type</th>
+								<th>Cottage Type</th>
 								<th>Check in</th>
 								<th>Check out</th>
 								<th>Date Created</th>
+								<th>Name</th>
+								<th>Contact Number</th>
+
+
 							</thead>
 							<tbody>
 								<?php 
@@ -36,6 +40,7 @@ while($row = $room->fetch_assoc()){
 									$room_type_id = $room['room_type_id'];
 									$room_type = $room_type_array[$room_type_id];
 									$room_name = $room_type['room_name'];
+									
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
@@ -43,6 +48,9 @@ while($row = $room->fetch_assoc()){
 									<td class=""><?php echo $row['check_in'] ?></td>
 									<td class=""><?php echo $row['check_out'] ?></td>
 									<td class=""><?php echo $row['date_created'] ?></td>
+									<td class=""><?php echo $row['name'] ?></td>
+									<td class=""><?php echo $row['contact_number'] ?></td>
+
 
 								</tr>
 							<?php endwhile; ?>

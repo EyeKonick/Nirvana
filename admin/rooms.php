@@ -9,12 +9,12 @@
 			<form action="" id="manage-room">
 				<div class="card">
 					<div class="card-header">
-						    Room Form
+						    Cottage Form
 				  	</div>
 					<div class="card-body">
 							<input type="hidden" name="id">
 							<div class="form-group">
-								<label class="control-label">Room No.</label>
+								<label class="control-label">Cottage No.</label>
 								<input type="text" class="form-control" name="room-number">
 							</div>
 							<div class="form-group">
@@ -54,8 +54,8 @@
 						<table class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th class="text-center">Room #</th>
-									<th class="text-center">Room Type</th>
+									<th class="text-center">Cottage #</th>
+									<th class="text-center">Cottage Type</th>
 								</tr>
 							</thead>
 							<tbody>
