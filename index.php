@@ -159,7 +159,7 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="hero-text">
-              <h1 class="title">Nirvana's Highlands Resort</h1>
+              <h1>Nirvana Highlands Resort</h1>
               <p>BARANGAY AGTAMBI, DAO, CAPIZ</p>
             </div>
           </div>
@@ -374,7 +374,7 @@
                   across 90 local websites
                 </p>
                 <div class="fa-social">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="https://www.facebook.com/profile.php?id=100090207138344" target=”_blank”><i class="fa fa-facebook"></i></a>
                   <a href="#"><i class="fa fa-twitter"></i></a>
                   <a href="#"><i class="fa fa-tripadvisor"></i></a>
                   <a href="#"><i class="fa fa-instagram"></i></a>

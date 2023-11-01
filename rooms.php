@@ -208,9 +208,9 @@
       <div class="container">
         <div class="row">
           <?php
-            for($count = 0; $count < 10; $count++ ){
+            for($count = 0; $count < 11; $count++ ){
               $room_type = $_SESSION['room_types'][$count];
-              $status = "unavailable";
+              $status = "available";
               $avail_room_id = 0;
               $image_src = $room_type['image_src'];
               // set status of rooms into available if have a matching id in rooms array.
@@ -250,12 +250,12 @@
             </div>
           </div>
           <?php } ?>
-          <div class="col-lg-12">
-          <!--  <div class="room-pagination">
+          <!-- <div class="col-lg-12">
+            <div class="room-pagination">
               <a href="#">1</a>
               <a href="#">2</a>
               <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-            </div>-->
+            </div>
           </div>
         </div>
       </div>
