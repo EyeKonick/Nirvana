@@ -24,7 +24,7 @@
 									$cat = $conn->query("SELECT * FROM room_type_tbl order by `room_name` asc ");
 									$room_types = array();
 									while($row= $cat->fetch_assoc()) {
-										$cat_name[$row['id']] = $row['room_name'];
+										$cat_name[$row['id']] = $row['room_name'];              
 										?>
 										<option value="<?php echo $row['id'] ?>"><?php echo $row['room_name'] ?></option>
 									<?php
@@ -32,7 +32,7 @@
 									?>
 								</select>
 							</div>
-					</div>
+					</div> 
 							
 					<div class="card-footer">
 						<div class="row">

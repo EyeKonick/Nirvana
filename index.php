@@ -184,7 +184,7 @@
               <h3>Book Your Cottage</h3>
               <form action="rooms.php">
                 <div class="choose-room mb-3">
-                  <button onclick="location.href='rooms.php'">Choose cottage</button>
+                  <a href="rooms.php">Choose cottage</a>
                   <input class="room-field" type="text" placeholder="<?php echo $selected_room_name ?>" disabled>
                 </div>
               </form>
