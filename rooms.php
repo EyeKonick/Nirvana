@@ -4,9 +4,10 @@
   try {
     require_once('db_conn.php');
 
-    $cottageStatus = '';
-
-    $query = 'SELECT *, r.id, "available" AS `status` FROM room_tbl AS r INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id ORDER BY rt.cost DESC,  rt.room_name ASC;';
+    $query = 'SELECT *, r.id
+              FROM room_tbl AS r
+              INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
+              ORDER BY rt.cost DESC,  rt.room_name ASC;';
     $statement = $connection->prepare($query);
 
     if($statement->execute()) {
@@ -18,12 +19,17 @@
 
   if(isset($_POST['button_check_availability'])) {
     try {
+      $isUnavailable = false;
+
       require_once('db_conn.php');
 
       $checkIn = $_POST['date_to_check'];
 
-      $query = 'SELECT r.id, b.room_id, CASE WHEN b.check_in = :checkIn OR b.check_out  > :checkIn THEN "unavailable" ELSE "available" END AS `status` FROM room_tbl AS r
-                      INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id INNER JOIN bookings_tbl AS b ON r.id = b.room_id;';
+      $query = 'SELECT *, r.id
+                FROM room_tbl AS r
+                INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
+                INNER JOIN bookings_tbl AS b ON r.id = b.room_id
+                WHERE b.check_in = :checkIn OR b.check_in < :checkIn OR b.check_out > :checkIn AND b.isBooked = 1;';
 
       $checkInDate = date('Y-m-d', strtotime($checkIn));
 
@@ -31,7 +37,7 @@
       $statement->bindParam('checkIn', $checkInDate, PDO::PARAM_STR);
 
       if($statement->execute()) {
-        $unavailableRooms = $statement->fetchAll(PDO::FETCH_OBJ);
+        $bookedRooms = $statement->fetchAll(PDO::FETCH_OBJ);
       }
     } catch(PDOException $exception) {
       $messageFailed = $exception->getMessage();
@@ -225,28 +231,36 @@
                       </tr>
                     </tbody>
                   </table>
+                  <?php if(!isset($_POST['button_check_availability'])): ?>
+                    <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center"><br>
+                      <?php echo 'Available'; ?>
+                    </a>
+                  <?php else: ?>
                     <?php
-                      if(!isset($_POST['button_check_availability'])) {
-                        $cottageStatus = 'Available';
-                      } elseif(isset($_POST['button_check_availability'])) {
-                        foreach($unavailableRooms as $unavailableRoom) {
-                          if($unavailableRoom->room_id === $room->id && $unavailableRoom->status === 'unavailable') {
-                            $cottageStatus =  'Unavailable';
-                          } else {
-                            $cottageStatus = 'Available';
+                    foreach($bookedRooms as $bookedRoom) {
+                      if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
+                        $isUnavailable = true;
+                      } else {
+                        $isUnavailable = false;
+
+                        foreach($bookedRooms as $bookedRoom) {
+                          if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
+                            $isUnavailable = true;
                           }
                         }
                       }
+                    }  
                     ?>
-                      <?php if($cottageStatus === 'Available'): ?>
-                        <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center"><br>
-                          <?php echo $cottageStatus; ?>
-                        </a>
-                      <?php else: ?>
-                        <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center disabled"><br>
-                          <?php echo $cottageStatus; ?>
-                        </a>
-                      <?php endif; ?>
+                    <?php if($isUnavailable === true): ?>
+                      <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center disabled"><br>
+                        <?php echo 'Unavailable'; ?>
+                      </a>
+                    <?php else: ?>
+                      <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center"><br>
+                        <?php echo 'Available'; ?>
+                      </a>
+                    <?php endif; ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
