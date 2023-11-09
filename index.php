@@ -209,8 +209,7 @@
                 <label>Contact Number:</label>
                   <<input class="room-field" type="int" id="contact_number" name="contact_number" maxlength="10" required/> 
                 </div>
-                <button type="submit" class="book_btn">BOOK NOW
-                </button>
+                <button type="submit" class="book_btn">BOOK NOW</button>
               </form>
             </div>
           </div>
@@ -463,27 +462,12 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-  </body>
-</html>
-
-<?php
-
-  if($query_success){
-
-    ?>
-
     <script>
-
     swal({
       title: "Thank You & Have a Good Vacation",
       text: "Successfully Booked",
       icon: "success",
     });
-
     </script>
-
-    <?php
-  }
-
-
-?>
+  </body>
+</html>

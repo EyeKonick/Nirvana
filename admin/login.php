@@ -1,3 +1,54 @@
+<?php 
+session_start();
+
+// require_once('../db_connection.php');
+// 
+// if(isset($_SESSION['login_id']))
+// header("location:index.php?page=home");
+// 
+// $query = $connection->query("SELECT * FROM system_settings limit 1")->fetch_array();
+// 		foreach ($query as $key => $value) {
+// 			if(!is_numeric($key))
+// 				$_SESSION['setting_'.$key] = $value;
+// 		}
+
+
+if(isset($_POST['btn_login'])) {
+	try {
+		require_once('../db_conn.php');
+	
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+	
+		$query = 'SELECT *
+					FROM users
+					WHERE username = :username AND `password` = :password';
+		
+		$statement = $connection->prepare($query);
+		$statement->bindParam('username', $username, PDO::PARAM_STR);
+		$statement->bindParam('password', $password, PDO::PARAM_STR);
+	
+		if($statement->execute()) {
+			$user = $statement->fetch(PDO::FETCH_OBJ);
+
+			if($statement->rowCount() > 0) {
+				$_SESSION['user_id'] = $user->id;
+				$_SESSION['name'] = $user->name;
+				$_SESSION['username'] = $user->username;
+				$_SESSION['password'] = $user->password;
+				$_SESSION['isLoggedIn'] = true;
+
+				header('location: home.php');
+			} else {
+				$messageFailed = 'Failed to login! Incorrect username or password!';
+			}
+		}
+	} catch(PDOException $exception) {
+		echo $messageFailed = $exception->getMessage();
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,22 +56,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+
   <title>Nirvana Admin</title>
- 	
-
-<?php include('./header.php'); ?>
-<?php include('./db_connect.php'); ?>
-<?php 
-session_start();
-if(isset($_SESSION['login_id']))
-header("location:index.php?page=home");
-
-$query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
-		foreach ($query as $key => $value) {
-			if(!is_numeric($key))
-				$_SESSION['setting_'.$key] = $value;
-		}
-?>
 
 </head>
 <style>
@@ -57,7 +96,7 @@ $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
   		<div id="login-right">
   			<div class="card col-md-8">
   				<div class="card-body">
-  					<form id="login-form" >
+  					<form id="login-form" action="" method="post">
   						<div class="form-group">
   							<label for="username" class="control-label">Username</label>
   							<input type="text" id="username" name="username" class="form-control">
@@ -66,7 +105,7 @@ $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
   							<label for="password" class="control-label">Password</label>
   							<input type="password" id="password" name="password" class="form-control">
   						</div>
-  						<center><button class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</button></center>
+  						<center><button class="btn-sm btn-block btn-wave col-md-4 btn-primary" name="btn_login">Login</button></center>
   					</form>
   				</div>
   			</div>

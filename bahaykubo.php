@@ -1,43 +1,50 @@
 <?php 
   session_start(); 
-  include 'db_connection.php';
-  // Get all room types to display in rooms page
-  if(!$_SESSION['room_types']){
-    
-    $query = "SELECT * FROM `room_type_tbl`";
-    $room_types_sql = mysqli_query($connection, $query);
 
-    $_SESSION['room_types'] = array();
-    while ($room_type = mysqli_fetch_assoc($room_types_sql)){
-      array_push($_SESSION['room_types'], $room_type);
+  try {
+    require_once('db_conn.php');
+
+    $query = 'SELECT *, r.id
+              FROM room_tbl AS r
+              INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
+              WHERE rt.room_name LIKE "%kubo%"
+              ORDER BY rt.cost DESC,  rt.room_name ASC;';
+    $statement = $connection->prepare($query);
+
+    if($statement->execute()) {
+      $rooms = $statement->fetchAll(PDO::FETCH_OBJ);
     }
+  } catch(PDOException $exception) {
+    echo $messageFailed = $exception->getMessage();
   }
 
-  // get all rooms in room table
-  $query = "SELECT * FROM `room_tbl`";
-  $room_sql = mysqli_query($connection, $query);
-  $rooms = array();
-  while ($room = mysqli_fetch_assoc($room_sql)){
-    array_push($rooms, $room);
-  }
+  if(isset($_POST['button_check_availability'])) {
+    try {
+      $isUnavailable = false;
 
-  // get all tickets that are within the date for check room availability
-  if(isset($_POST['date_to_check']) && !empty($_POST['date_to_check'])){
-    $date = new DateTime($_POST['date_to_check']);
-    $date_to_check = $date->format("Y-m-d");
-    $query = "SELECT `room_id` FROM `bookings_tbl` WHERE `check_in` <= '$date_to_check' AND `check_out` >= '$date_to_check'";
-    $bookings_sql = mysqli_query($connection, $query); 
-    
-    // Loop through tickets and rooms to check if room is already booked and remove it in rooms to indicate it is unavailable
-    while($booking =  mysqli_fetch_assoc($bookings_sql)){
-      for ($i=0; $i < sizeof($rooms); $i++) { 
-        if($rooms[$i]['id'] == $booking['room_id']){
-          unset($rooms[$i]);
-        }
+      require_once('db_conn.php');
+
+      $checkIn = $_POST['date_to_check'];
+
+      $query = 'SELECT *, r.id
+                FROM room_tbl AS r
+                INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
+                INNER JOIN bookings_tbl AS b ON r.id = b.room_id
+                WHERE b.check_in = :checkIn OR b.check_in < :checkIn OR b.check_out > :checkIn AND
+                b.isBooked = 1 AND rt.room_name LIKE "%kubo%"
+                ORDER BY rt.cost DESC, rt.room_name ASC;';
+
+      $checkInDate = date('Y-m-d', strtotime($checkIn));
+
+      $statement = $connection->prepare($query);
+      $statement->bindParam('checkIn', $checkInDate, PDO::PARAM_STR);
+
+      if($statement->execute()) {
+        $bookedRooms = $statement->fetchAll(PDO::FETCH_OBJ);
       }
+    } catch(PDOException $exception) {
+      echo $messageFailed = $exception->getMessage();
     }
-  }else{
-    $_POST['date_to_check'] = "";
   }
 ?>
 <!DOCTYPE html>
@@ -74,10 +81,10 @@
   </head>
 
   <body>
-    <!-- Page Preloder -->
+    <!-- Page Preloder
     <div id="preloder">
       <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -182,10 +189,10 @@
                 <form action="rooms.php" method="post">
                   <div class="check-date mt-5">
                     <label for="date-out">Check Date Available: </label>
-                    <input type="text" class="date-input" id="date-out" name="date_to_check" value="<?php echo $_POST['date_to_check'] ?>"/>
+                    <input type="text" class="date-input" id="date-out" name="date_to_check" value=""/>
                     <i class="icon_calendar"></i>
                   </div>
-                  <button class="btn btn-primary primary-btn mt-3 p-2" type="submit">Check yoursss</button>
+                  <button class="btn btn-primary primary-btn mt-3 p-2" type="submit" name="button_check_availability">Check Availability</button>
                 </form>
               </div>
             </div>
@@ -197,70 +204,89 @@
 
     <div class="col-lg-12">
           <div class="room-pagination">
-              <a href="rooms.php">Small</a>
-              <a href="roomsmedium.php">medium</a>
-              <a href="bahaykubo.php" class="active">Bahay Kubo</a>
+              <a href="rooms.php" class="active">Small</a>
+              <a href="medium.php">medium</a>
+              <a href="bahaykubo.php">Bahay Kubo</a>
               <a href="venuehall.php">Venue Hall</a>
             </div>
 
-    <!-- Rooms Section Begin -->
+     <!-- Rooms Section Begin -->
     <section class="rooms-section spad">
       <div class="container">
         <div class="row">
-          <?php
-            for($count = 0; $count < 10; $count++ ){
-              $room_type = $_SESSION['room_types'][$count];
-              $status = "unavailable";
-              $avail_room_id = 0;
-              $image_src = $room_type['image_src'];
-              // set status of rooms into available if have a matching id in rooms array.
-              foreach($rooms as $room){
-                if($room["room_type_id"] == $room_type['id']){
-                  $status = "available";
-                  $avail_room_id = $room['id'];
-                }
-              }
-          ?>
+          <?php foreach($rooms as $room): ?>
           <div class="col-lg-4 col-md-6">
             <div class="room-color">
               <div class="room-item">
-                <img src=<?php echo "img/room/$image_src"?> alt="" />
+                <img src="img/room/<?=$room->image_src?>" alt="" />
                 <div class="ri-text">
-                  <h4><?php echo $room_type['room_name'] ?></h4>
-                  <h3>₱<?php echo $room_type['cost'] ?></h3>
+                  <h4><?=$room->room_name?></h4>
+                  <h3>₱<?=$room->cost?></h3>
                   <table>
                     <tbody>
                       <tr>
                         <td class="r-o">Capacity:</td>
-                        <td>Max person <?php echo $room_type['capacity'] ?></td>
+                        <td>Max person <?=$room->capacity?></td>
                       </tr>
                       <tr>
                         <td class="r-o">Services:</td>
-                        <td><?php echo $room_type['services'] ?></td>
+                        <td><?=$room->services?></td>
                       </tr>
                     </tbody>
                   </table>
-                  <a href="index.php?room_id=<?php echo $avail_room_id ?>" class="primary-btn"><br>
-                  <?php 
-                    echo $status;
-                  ?>
-                  </a>
+                  <?php if(!isset($_POST['button_check_availability'])): ?>
+                    <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center"><br>
+                      <?php echo 'Available'; ?>
+                    </a>
+                  <?php else: ?>
+                    <?php
+                    // Load all data from bookings table that are booked
+                    foreach($bookedRooms as $bookedRoom) {
+                      // When data match their id from bookings to room table, set their cottage into unavailable. Otherwise, set into available
+                      if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
+                        $isUnavailable = true;
+                      } else {
+                        $isUnavailable = false;
+
+                        // When cottage is booked according to specified date but still available, will loop until the cottage will set into
+                        // unavailable
+                        foreach($bookedRooms as $bookedRoom) {
+                          if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
+                            $isUnavailable = true;
+                          }
+                        }
+                      }
+                    }
+                    
+                    // If variable $isUnavailable is true, the cottage will be unavailable. Otherwise, when variable $isUnavailable is false will
+                    // be available
+                    ?>
+                    <?php if($isUnavailable === true): ?>
+                      <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center disabled"><br>
+                        <?php echo 'Unavailable'; ?>
+                      </a>
+                    <?php else: ?>
+                      <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center"><br>
+                        <?php echo 'Available'; ?>
+                      </a>
+                    <?php endif; ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
           </div>
-          <?php } ?>
-          <div class="col-lg-12">
-          <!--  <div class="room-pagination">
+          <?php endforeach; ?>
+          <!-- <div class="col-lg-12">
+            <div class="room-pagination">
               <a href="#">1</a>
               <a href="#">2</a>
               <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-            </div>-->
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- Rooms Section End -->
+    Rooms Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">

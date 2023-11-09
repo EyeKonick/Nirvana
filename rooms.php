@@ -7,6 +7,7 @@
     $query = 'SELECT *, r.id
               FROM room_tbl AS r
               INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
+              WHERE rt.room_size = 1
               ORDER BY rt.cost DESC,  rt.room_name ASC;';
     $statement = $connection->prepare($query);
 
@@ -14,7 +15,7 @@
       $rooms = $statement->fetchAll(PDO::FETCH_OBJ);
     }
   } catch(PDOException $exception) {
-    $messageFailed = $exception->getMessage();
+    echo $messageFailed = $exception->getMessage();
   }
 
   if(isset($_POST['button_check_availability'])) {
@@ -29,7 +30,9 @@
                 FROM room_tbl AS r
                 INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
                 INNER JOIN bookings_tbl AS b ON r.id = b.room_id
-                WHERE b.check_in = :checkIn OR b.check_in < :checkIn OR b.check_out > :checkIn AND b.isBooked = 1;';
+                WHERE b.check_in = :checkIn OR b.check_in < :checkIn OR b.check_out > :checkIn AND
+                b.isBooked = 1 AND rt.room_size = 1
+                ORDER BY rt.cost DESC, rt.room_name ASC;';
 
       $checkInDate = date('Y-m-d', strtotime($checkIn));
 
@@ -40,7 +43,7 @@
         $bookedRooms = $statement->fetchAll(PDO::FETCH_OBJ);
       }
     } catch(PDOException $exception) {
-      $messageFailed = $exception->getMessage();
+      echo $messageFailed = $exception->getMessage();
     }
   }
 ?>
@@ -237,19 +240,26 @@
                     </a>
                   <?php else: ?>
                     <?php
+                    // Load all data from bookings table that are booked
                     foreach($bookedRooms as $bookedRoom) {
+                      // When data match their id from bookings to room table, set their cottage into unavailable. Otherwise, set into available
                       if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
                         $isUnavailable = true;
                       } else {
                         $isUnavailable = false;
 
+                        // When cottage is booked according to specified date but still available, will loop until the cottage will set into
+                        // unavailable
                         foreach($bookedRooms as $bookedRoom) {
                           if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
                             $isUnavailable = true;
                           }
                         }
                       }
-                    }  
+                    }
+                    
+                    // If variable $isUnavailable is true, the cottage will be unavailable. Otherwise, when variable $isUnavailable is false will
+                    // be available
                     ?>
                     <?php if($isUnavailable === true): ?>
                       <a href="index.php?room_id=<?=$room->id?>" class="btn primary-btn text-center disabled"><br>
