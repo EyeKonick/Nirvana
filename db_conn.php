@@ -1,7 +1,7 @@
 <?php
-$sourceName = 'mysql:host=localhost:3307;dbname=nirvana_db;';
+$sourceName = 'mysql:host=localhost:3306;dbname=nirvana_db;';
 $username = 'root';
-$password = 'admin';
+$password = '';
 $options = [];
 
 try {
