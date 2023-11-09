@@ -204,8 +204,8 @@
 
     <div class="col-lg-12">
           <div class="room-pagination">
-              <a href="rooms.php" class="active">Small</a>
-              <a href="medium.php">medium</a>
+              <a href="rooms.php">Small</a>
+              <a href="medium.php" class="active">medium</a>
               <a href="bahaykubo.php">Bahay Kubo</a>
               <a href="venuehall.php">Venue Hall</a>
             </div>

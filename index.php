@@ -1,6 +1,12 @@
 <?php
   session_start();
   include 'db_connection.php';
+  if (isset($_POST["date_in"]) && !empty($_POST["date_in"]) && isset($_POST["date_out"]) && !empty($_POST["date_out"]) &&  isset($_POST["name"]) &&  isset($_POST["contact_number"])) {
+    // ... (rest of your form processing code)
+
+    // After successfully processing the form, set a session variable to indicate the form has been submitted
+    $_SESSION['form_submitted'] = true;
+  }
   $selected_room_name = "";
   $query = "SELECT * FROM `room_type_tbl`";
   $room_types_sql = mysqli_query($connection, $query);
@@ -462,12 +468,20 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-    swal({
-      title: "Thank You & Have a Good Vacation",
-      text: "Successfully Booked",
-      icon: "success",
-    });
-    </script>
+    <?php
+      if (isset($_SESSION['form_submitted']) && $_SESSION['form_submitted']) {
+      ?>
+      <script>
+          swal({
+            title: "Thank You & Have a Good Vacation",
+            text: "Successfully Booked",
+            icon: "success",
+          });
+      </script>
+      <?php
+        // Reset the session variable to prevent the popup from showing again on page reload
+        $_SESSION['form_submitted'] = false;
+      }
+      ?>
   </body>
 </html>
