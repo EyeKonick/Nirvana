@@ -30,8 +30,8 @@
                 FROM room_tbl AS r
                 INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
                 INNER JOIN bookings_tbl AS b ON r.id = b.room_id
-                WHERE b.check_in = :checkIn OR b.check_in < :checkIn OR b.check_out > :checkIn AND
-                b.isBooked = 1 AND rt.room_name LIKE "%kubo%"
+                WHERE b.check_in BETWEEN CURDATE() AND :checkIn AND b.check_out BETWEEN CURDATE() AND b.check_out AND
+                rt.room_name LIKE "%kubo%" AND b.isBooked = 1
                 ORDER BY rt.cost DESC, rt.room_name ASC;';
 
       $checkInDate = date('Y-m-d', strtotime($checkIn));
@@ -186,7 +186,7 @@
               <div class="bt-option">
                 <a href="./home.php">Home</a>
                 <span>Cottages</span>
-                <form action="rooms.php" method="post">
+                <form action="bahaykubo.php" method="post">
                   <div class="check-date mt-5">
                     <label for="date-out">Check Date Available: </label>
                     <input type="text" class="date-input" id="date-out" name="date_to_check" value=""/>
