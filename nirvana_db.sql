@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 09, 2023 at 03:37 PM
+-- Generation Time: Nov 10, 2023 at 03:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -46,7 +46,8 @@ INSERT INTO `bookings_tbl` (`id`, `room_id`, `check_in`, `check_out`, `name`, `c
 (31, 4, '2023-11-15', '2023-11-30', 'juan santos', '09123', 1, '2023-11-04 05:41:37'),
 (32, 13, '2023-11-19', '2023-11-30', 'juan dela cruz', '55', 1, '2023-11-04 13:44:47'),
 (33, 11, '2023-11-15', '2023-11-29', 'hello world', '12309', 1, '2023-11-04 14:16:23'),
-(34, 12, '2023-12-20', '2023-01-10', 'Bebian', '09912345', 1, '2023-11-04 15:28:43');
+(34, 12, '2023-12-20', '2023-01-10', 'Bebian', '09912345', 1, '2023-11-04 15:28:43'),
+(35, 6, '2023-12-15', '2023-12-28', 'hello obadi', '2', 1, '2023-11-09 15:11:48');
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings_tbl`
 --
 ALTER TABLE `bookings_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `room_tbl`

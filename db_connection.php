@@ -1,7 +1,7 @@
 <?php
-    $host = "localhost:3306";
+    $host = "localhost:3307";
     $username = "root";
-    $password = "";
+    $password = "admin";
     $database = "nirvana_db";
 
     $connection = mysqli_connect($host, $username, $password, $database);
