@@ -16,8 +16,8 @@ try {
 				    FROM bookings_tbl
 				    INNER JOIN room_tbl ON bookings_tbl.room_id = room_tbl.id
 				    INNER JOIN room_type_tbl ON room_tbl.room_type_id = room_type_tbl.id
-				    WHERE isBooked = 1 OR isBooked = 0
-            ORDER BY isBooked DESC, `name` ASC, room_name ASC;';
+				    WHERE bookings_tbl.isBooked = 1 AND bookings_tbl.isDeleted = 0 OR bookings_tbl.isBooked = 0 AND bookings_tbl.isDeleted = 0
+            ORDER BY bookings_tbl.isBooked DESC, bookings_tbl.name ASC, room_type_tbl.room_name ASC;';
 	
 	$statement = $connection->prepare($query);
 	if($statement->execute()) {
@@ -138,46 +138,27 @@ try {
 			</thead>
 			<tbody>
 				<?php foreach($bookings as $booking): ?>
-				<tr>
-					<td><?=$booking->id;?></td>
-					<td><?=$booking->room_name;?></td>
-					<td><?=$booking->check_in;?></td>
-					<td><?=$booking->check_out;?></td>
-					<td><?=$booking->name;?></td>
-					<td><?=$booking->contact_number;?></td>
-					<td>
-						<a href="#" class="btn btn-outline-success">Confirm</a>
-            <?php if($booking->isBooked == 0): ?>
-            <a href="#" class="btn btn-outline-warning disabled">Checked out</a>
-            <?php else: ?>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-warning" id="open_check_out_modal" data-bs-toggle="modal" data-bs-target="#check_out_modal">
-              Check Out
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="check_out_modal" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Check Out Confirmation</h5>
-                  </div>
-                  <div class="modal-body">
-                    Are you sure you want to checked out?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" id="close_check_out_modal" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <form action="home.php?id=<?=$booking->id;?>" method="post">
-                      <button type="submit" class="btn btn-danger" name="confirm_check_out">Yes</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <?php endif; ?>
-						<a href="#" class="btn btn-outline-danger">Delete</a>
-					</td>
-				</tr>
+          <tr>
+            <td><?=$booking->id;?></td>
+            <td><?=$booking->room_name;?></td>
+            <td><?=$booking->check_in;?></td>
+            <td><?=$booking->check_out;?></td>
+            <td><?=$booking->name;?></td>
+            <td><?=$booking->contact_number;?></td>
+            <td>
+              <?php if($booking->isConfirmed == 0): ?>
+                <a href="confirm_confirm.php?id=<?=$booking->id;?>" class="btn btn-success">Confirm</a>
+              <?php else: ?>
+                <a href="#" class="btn btn-success disabled">Confirmed</a>
+              <?php endif; ?>
+              <?php if($booking->isBooked == 1): ?>
+                <a href="confirm_check_out.php?id=<?=$booking->id;?>" class="btn btn-warning">Check Out</a>
+              <?php else: ?>
+                <a href="#" class="btn btn-warning disabled">Checked Out</a>
+              <?php endif; ?>
+              <a href="confirm_delete.php?id=<?=$booking->id;?>" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>
@@ -185,24 +166,14 @@ try {
 
 
 	<!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script>
-      $(document).ready(function() {
-        $("#open_check_out_modal").click(function() {
-          $("#check_out_modal").modal('show');
-        });
-
-        $("#close_check_out_modal").click(function() {
-          $("#check_out_modal").modal('hide');
-        });
-      });
-    </script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/jquery.magnific-popup.min.js"></script>
+  <script src="../js/jquery.nice-select.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="../js/jquery.slicknav.js"></script>
+  <script src="../js/owl.carousel.min.js"></script>
+  <script src="../js/main.js"></script>
+  </script>
 </body>
 </html>
