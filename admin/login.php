@@ -1,24 +1,21 @@
 <?php 
 session_start();
 
-// require_once('../db_connection.php');
-// 
-// if(isset($_SESSION['login_id']))
-// header("location:index.php?page=home");
-// 
-// $query = $connection->query("SELECT * FROM system_settings limit 1")->fetch_array();
-// 		foreach ($query as $key => $value) {
-// 			if(!is_numeric($key))
-// 				$_SESSION['setting_'.$key] = $value;
-// 		}
+function validate($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
 
+$messageFailed = '';
 
 if(isset($_POST['btn_login'])) {
 	try {
 		require_once('../db_conn.php');
 	
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$username = validate($_POST['username']);
+		$password = validate($_POST['password']);
 	
 		$query = 'SELECT *
 					FROM users
@@ -97,6 +94,11 @@ if(isset($_POST['btn_login'])) {
   			<div class="card col-md-8">
   				<div class="card-body">
   					<form id="login-form" action="" method="post">
+						<?php if($messageFailed): ?>
+						<div class="alert alert-danger">
+							<?php echo $messageFailed; ?>
+						</div>
+						<?php endif; ?>
   						<div class="form-group">
   							<label for="username" class="control-label">Username</label>
   							<input type="text" id="username" name="username" class="form-control">
