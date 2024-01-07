@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Dec 28, 2023 at 04:42 AM
+-- Generation Time: Jan 07, 2024 at 06:33 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -40,6 +40,15 @@ CREATE TABLE `bookings_tbl` (
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `bookings_tbl`
+--
+
+INSERT INTO `bookings_tbl` (`id`, `room_id`, `check_in`, `check_out`, `name`, `contact_number`, `isConfirmed`, `isBooked`, `isDeleted`, `date_created`) VALUES
+(38, 16, '2023-11-20', '2023-11-24', 'juan dela cruz', '09123', 1, 0, 1, '2023-11-11 11:29:16'),
+(39, 4, '2023-12-28', '2023-01-04', 'JOhanthan', '09438764', 1, 0, 1, '2023-12-27 02:01:14'),
+(40, 8, '2023-12-30', '2023-01-20', 'dexter', '0923756385', 0, 1, 0, '2023-12-27 06:42:34');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +61,27 @@ CREATE TABLE `room_tbl` (
   `room_type_id` int(11) NOT NULL,
   `date_created` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_tbl`
+--
+
+INSERT INTO `room_tbl` (`id`, `room_number`, `room_type_id`, `date_created`) VALUES
+(1, 1, 1, '2023-09-02 14:52:14'),
+(2, 2, 1, '2023-09-02 14:52:14'),
+(3, 3, 2, '2023-09-02 14:52:14'),
+(4, 4, 2, '2023-09-02 14:52:14'),
+(5, 5, 3, '2023-09-02 14:52:14'),
+(6, 6, 4, '2023-09-02 14:52:14'),
+(7, 7, 3, '2023-09-02 14:52:14'),
+(8, 8, 4, '2023-09-02 14:52:14'),
+(9, 9, 5, '2023-09-02 14:52:14'),
+(10, 10, 5, '2023-09-02 14:52:14'),
+(11, 11, 6, '2023-09-02 14:52:14'),
+(12, 12, 7, '2023-09-02 14:52:14'),
+(13, 13, 8, '2023-09-02 14:52:14'),
+(14, 14, 9, '2023-09-02 14:52:14'),
+(16, 5435, 10, '2023-11-11 11:17:15');
 
 -- --------------------------------------------------------
 
@@ -70,6 +100,23 @@ CREATE TABLE `room_type_tbl` (
   `image_src` varchar(255) NOT NULL,
   `room_size` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_type_tbl`
+--
+
+INSERT INTO `room_type_tbl` (`id`, `room_name`, `cost`, `size`, `bed`, `capacity`, `services`, `image_src`, `room_size`) VALUES
+(1, 'Venue Hall', 999, 30, 'King Beds', 5, 'Wifi, Television, Bathroom', 'room-1.png', 0),
+(2, 'Bahay Kubo', 999, 30, 'King Beds', 5, 'Wifi, Television, Bathroom', 'room-2.png', 0),
+(3, 'Medium Room', 999, 30, 'King Beds', 5, 'Wifi, Television, Bathroom', 'room-3.png', 2),
+(4, 'Small Room', 999, 30, 'King Beds', 5, 'Wifi, Television, Bathroom', 'room-4.png', 1),
+(5, 'Premium King Room', 159, 30, 'King Beds', 3, 'Wifi, Television, Bathroom', 'room-5.jpg', 0),
+(6, 'Deluxe Room', 159, 30, 'King Beds', 5, 'Wifi, Television, Bathroom', 'room-6.jpg', 0),
+(7, 'Double Room', 159, 30, 'King Beds', 2, 'Wifi, Television, Bathroom', 'room-7.jpg', 0),
+(8, 'Luxury Room', 159, 30, 'King Beds', 1, 'Wifi, Television, Bathroom', 'room-8.jpg', 0),
+(9, 'Room with View', 159, 30, 'King Beds', 1, 'Wifi, Television, Bathroom', 'room-9.jpg', 0),
+(10, 'Small-kubo', 900, 20, '2 bed', 10, 'wifi, tv, Bathroom', 'room-10.jpg', 1),
+(11, 'Small-kubo 2', 900, 20, '2 bed', 10, 'wifi, tv, Bathroom', 'room-10.jpg', 1);
 
 -- --------------------------------------------------------
 
