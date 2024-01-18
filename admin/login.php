@@ -35,7 +35,7 @@ if(isset($_POST['btn_login'])) {
 				$_SESSION['password'] = $user->password;
 				$_SESSION['isLoggedIn'] = true;
 
-				header('location: home.php');
+				header('location: booked.php');
 			} else {
 				$messageFailed = 'Failed to login! Incorrect username or password!';
 			}
