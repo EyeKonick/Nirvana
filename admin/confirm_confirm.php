@@ -41,7 +41,7 @@ try {
         $statement->bindParam('id', $id, PDO::PARAM_INT);
 
         if($statement->execute()) {
-            header('Location: home.php?messageSuccess=Booking successfully confirmed!');
+            header('Location: booked.php?messageSuccess=Booking successfully confirmed!');
         }
     }
 } catch(PDOException $exception) {
@@ -91,7 +91,7 @@ try {
                 <p>Are you sure you want to confirm?</p>
             </div>
             <div class="modal-footer">
-                <a href="home.php" class="btn btn-primary" data-bs-dismiss="modal">Back</a>
+                <a href="booked.php" class="btn btn-primary" data-bs-dismiss="modal">Back</a>
                 <form action="confirm_confirm.php?id=<?=$booking->id;?>" method="post">
                     <button type="submit" class="btn btn-danger" name="confirm">Yes</button>
                 </form>

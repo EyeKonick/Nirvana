@@ -41,7 +41,7 @@ try {
         $statement->bindParam('id', $id, PDO::PARAM_INT);
 
         if($statement->execute()) {
-            header('Location: home.php?messageSuccess=Successfully deleted!');
+            header('Location: booked.php?messageSuccess=Successfully deleted!');
         }
     }
 } catch(PDOException $exception) {
@@ -91,7 +91,7 @@ try {
                 <p>Are you sure you want to delete?</p>
             </div>
             <div class="modal-footer">
-                <a href="home.php" class="btn btn-primary" data-bs-dismiss="modal">Back</a>
+                <a href="booked.php" class="btn btn-primary" data-bs-dismiss="modal">Back</a>
                 <form action="confirm_delete.php?id=<?=$booking->id;?>" method="post">
                     <button type="submit" class="btn btn-danger" name="confirm">Yes</button>
                 </form>
