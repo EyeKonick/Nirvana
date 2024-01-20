@@ -73,6 +73,7 @@ try {
     <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="../basic/style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/datatables.min.css" />
 
 	<title>Admin | Home</title>
 </head>
@@ -102,9 +103,9 @@ try {
                     <li><a href="logout.php">Logout</a></li>      
                   </ul>
                 </nav>
-                <div class="nav-right search-switch">
+                <!-- <div class="nav-right search-switch">
                   <i class="icon_search"></i>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -114,7 +115,7 @@ try {
     <!-- Header End -->
 
 	<div class="container">
-		<table class="table table-hover">
+		<table class="table table-hover" id="myTable">
       <?php if(isset($_GET['messageSuccess'])): ?>
 			<div class="alert alert-success">
 				<?php echo $_GET['messageSuccess']; ?>
@@ -174,6 +175,11 @@ try {
   <script src="../js/jquery.slicknav.js"></script>
   <script src="../js/owl.carousel.min.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/datatables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#myTable').DataTable();
+    });
   </script>
 </body>
 </html>
