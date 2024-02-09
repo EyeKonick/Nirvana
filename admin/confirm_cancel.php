@@ -34,14 +34,14 @@ try {
         $query = 'UPDATE bookings_tbl
                     INNER JOIN room_tbl ON bookings_tbl.room_id = room_tbl.id
                     INNER JOIN room_type_tbl ON room_tbl.room_type_id = room_type_tbl.id
-                    SET bookings_tbl.isDeleted = 1
+                    SET bookings_tbl.isCancelled = true
                     WHERE bookings_tbl.id = :id;';
         
         $statement = $connection->prepare($query);
         $statement->bindParam('id', $id, PDO::PARAM_INT);
 
         if($statement->execute()) {
-            header('Location: booked.php?messageSuccess=Successfully deleted!');
+            header('Location: booked.php?messageSuccess=Successfully cancelled!');
         }
     }
 } catch(PDOException $exception) {
@@ -88,11 +88,11 @@ try {
                 <h5 class="modal-title">Confirmation</h5>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete?</p>
+                <p>Are you sure you want to cancel?</p>
             </div>
             <div class="modal-footer">
                 <a href="booked.php" class="btn btn-primary" data-bs-dismiss="modal">Back</a>
-                <form action="confirm_delete.php?id=<?=$booking->id;?>" method="post">
+                <form action="confirm_cancel.php?id=<?=$booking->id;?>" method="post">
                     <button type="submit" class="btn btn-danger" name="confirm">Yes</button>
                 </form>
             </div>
