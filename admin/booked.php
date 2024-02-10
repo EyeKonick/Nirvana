@@ -111,7 +111,7 @@ try {
   <!-- Header End -->
 
   <div class="container">
-    <table class="table table-hover mt-5" id="myTable" data-order="[[0, 'desc']]">
+    <table class="table table-hover mt-5" id="myTable">
       <?php if (isset($_GET['messageSuccess'])) : ?>
         <div class="alert alert-success">
           <?php echo $_GET['messageSuccess']; ?>
@@ -183,7 +183,9 @@ try {
   <script src="../js/datatables.min.js"></script>
   <script>
     $(document).ready(function() {
-      $('#myTable').DataTable();
+      $('#myTable').DataTable({
+        "order": [[0, "desc"]]
+      });
     });
   </script>
 </body>
