@@ -142,17 +142,21 @@ try {
             <td>
               <div class="row">
                 <div class="col">
-                  <?php if ($booking->isConfirmed == false) : ?>
-                    <a href="confirm_confirm.php?id=<?= $booking->id; ?>" class="btn btn-success w-100">Confirm</a>
-                  <?php else : ?>
+                  <?php if ($booking->isCancelled == true) : ?>
                     <a href="#" class="btn btn-success disabled w-100">Confirm</a>
+                  <?php elseif ($booking->isConfirmed == true) : ?>
+                    <a href="#" class="btn btn-success disabled w-100">Confirmed</a>
+                  <?php else : ?>
+                    <a href="confirm_confirm.php?id=<?= $booking->id; ?>" class="btn btn-success w-100">Confirm</a>
                   <?php endif; ?>
                 </div>
                 <div class="col">
-                  <?php if ($booking->isBooked == true) : ?>
-                    <a href="confirm_check_out.php?id=<?= $booking->id; ?>" class="btn btn-warning w-100">Check Out</a>
-                  <?php else : ?>
+                  <?php if ($booking->isCancelled == true) : ?>
                     <a href="#" class="btn btn-warning disabled w-100">Check Out</a>
+                  <?php elseif ($booking->isBooked == false) : ?>
+                    <a href="#" class="btn btn-warning disabled w-100">Checked Out</a>
+                  <?php else : ?>
+                    <a href="confirm_check_out.php?id=<?= $booking->id; ?>" class="btn btn-warning w-100">Check Out</a>
                   <?php endif; ?>
                 </div>
                 <div class="col">
@@ -184,7 +188,9 @@ try {
   <script>
     $(document).ready(function() {
       $('#myTable').DataTable({
-        "order": [[0, "desc"]]
+        "order": [
+          [0, "desc"]
+        ]
       });
     });
   </script>
