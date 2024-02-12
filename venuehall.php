@@ -31,7 +31,7 @@
                 INNER JOIN room_type_tbl AS rt ON r.room_type_id = rt.id
                 INNER JOIN bookings_tbl AS b ON r.id = b.room_id
                 WHERE b.check_in BETWEEN CURDATE() AND :checkIn AND b.check_out BETWEEN CURDATE() AND b.check_out AND
-                rt.room_name LIKE "%hall%" AND b.isBooked = 1
+                rt.room_name LIKE "%hall%" AND b.isBooked = true AND b.isCancelled = false
                 ORDER BY rt.cost DESC, rt.room_name ASC;';
 
       $checkInDate = date('Y-m-d', strtotime($checkIn));
