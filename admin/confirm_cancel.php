@@ -34,7 +34,7 @@ try {
         $query = 'UPDATE bookings_tbl
                     INNER JOIN room_tbl ON bookings_tbl.room_id = room_tbl.id
                     INNER JOIN room_type_tbl ON room_tbl.room_type_id = room_type_tbl.id
-                    SET bookings_tbl.isConfirmed = true, bookings_tbl.isBooked = false, bookings_tbl.isCancelled = true
+                    SET bookings_tbl.isCancelled = true
                     WHERE bookings_tbl.id = :id;';
         
         $statement = $connection->prepare($query);

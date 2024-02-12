@@ -243,7 +243,7 @@
                     // Load all data from bookings table that are booked
                     foreach($bookedRooms as $bookedRoom) {
                       // When data match their id from bookings to room table, set their cottage into unavailable. Otherwise, set into available
-                      if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
+                      if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked == true && $bookedRoom->isCancelled == false) {
                         $isUnavailable = true;
                       } else {
                         $isUnavailable = false;
@@ -251,7 +251,7 @@
                         // When cottage is booked according to specified date but still available, will loop until the cottage will set into
                         // unavailable
                         foreach($bookedRooms as $bookedRoom) {
-                          if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked === 1) {
+                          if($bookedRoom->room_id === $room->id && $bookedRoom->isBooked == true && $bookedRoom->isCancelled == false) {
                             $isUnavailable = true;
                           }
                         }
